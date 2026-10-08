@@ -1,7 +1,7 @@
 ---
 name: universal-software-engineering
 license: MIT
-description: "Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ cho code tinh gọn, viết bằng tiếng Việt. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành."
+description: "Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ, viết bằng tiếng Việt, cho code tinh gọn. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành. Không bắt mã nguồn hay tên định danh phải viết bằng tiếng Việt."
 compatibility: Không cần runtime riêng. Lệnh trong file tham chiếu chỉ là mặc định khi dự án chưa có toolchain.
 ---
 
@@ -22,7 +22,7 @@ Người dùng có thể không tự đọc từng dòng code, nên cần hiểu
 - **Không comment từng dòng** và không comment lặp lại điều code đã nói rõ (`i += 1  # tăng i`).
 - **Comment chỉ để giải thích "vì sao"**: lý do, ràng buộc hoặc đánh đổi không hiển nhiên (ví dụ giới hạn của API, workaround cho bug, lý do chọn thuật toán).
 - **Docstring ngắn cho hàm hoặc module công khai khi tên và chữ ký chưa nói hết** làm gì, nhận gì, trả về gì. Dùng đúng dạng của ngôn ngữ (docstring Python, `///` Rust, JSDoc/TSDoc, doc comment Go...). Không viết docstring chỉ lặp lại tên hàm.
-- **Đặt tên rõ nghĩa** thay vì tên ngắn kèm comment giải thích.
+- **Đặt tên rõ nghĩa** thay vì tên ngắn kèm comment giải thích. Tên biến, hàm, kiểu theo ngôn ngữ của dự án. Không dịch tên định danh sang tiếng Việt chỉ vì skill viết bằng tiếng Việt.
 - **Sau khi hoàn thành một tính năng hoặc thay đổi đáng kể**, tóm tắt ngắn bằng ngôn ngữ đơn giản: code làm gì, luồng chạy ra sao, file nào đã đổi và vì sao. Không bỏ qua tóm tắt này; đó là cách người dùng nắm thay đổi mà không cần docstring trên mọi hàm. Tránh thuật ngữ khi không cần; nếu dùng thì giải thích ngắn.
 - Với dự án mới, tạo hoặc cập nhật `README.md` (hoặc `NOTES.md`) ngắn: mục đích, cấu trúc thư mục, cách chạy/test, các quyết định thiết kế chính.
 - Nếu người dùng yêu cầu giải thích sâu hơn cho một đoạn cụ thể, giải thích ngoài code (trong câu trả lời), không nhét vào file.
@@ -37,10 +37,10 @@ Tổ chức theo tính năng khi tính năng đã đủ lớn: **một thư mụ
 
 # "Hoàn thành" nghĩa là gì
 
-Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Dự án chưa có lệnh nào thì dùng lệnh mặc định trong file tham chiếu của ngôn ngữ đang sửa. Không được tuyên bố "xong" khi chưa chạy. Không chạy được thì nói rõ lý do và đưa lệnh để người dùng tự chạy.
+Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Dự án chưa có lệnh nào thì dùng lệnh mặc định trong file tham chiếu của ngôn ngữ đang sửa, chỉ trên file vừa sửa. Lệnh ghi `.` hoặc `./...` chỉ dùng khi đang tạo dự án mới và cả cây là phần vừa tạo. Không được tuyên bố "xong" khi chưa chạy. Không chạy được thì nói rõ lý do và đưa lệnh để người dùng tự chạy.
 
-1. Lệnh kiểm tra không còn lỗi mới do thay đổi này. Không tự bật `-Werror` hay đổi bộ lint. Nếu lệnh đã fail từ trước khi sửa, không tự sửa các lỗi cũ. Lấy mức nền bằng cách chạy trên bản gốc, hoặc chỉ kiểm tra file vừa sửa, rồi báo riêng các lỗi có sẵn.
-2. Phần code vừa sửa đã được format bằng formatter của dự án, nếu dự án có.
+1. Lệnh kiểm tra không còn lỗi mới do thay đổi này. Không tự bật `-Werror`, `-D warnings` hay đổi bộ lint. Nếu lệnh đã fail từ trước khi sửa, không tự sửa các lỗi cũ. Lấy mức nền bằng cách chạy trên bản gốc, hoặc chỉ kiểm tra file vừa sửa, rồi báo riêng các lỗi có sẵn.
+2. Phần code vừa sửa đã được format bằng formatter của dự án, nếu dự án có. Chỉ format file vừa sửa. Lệnh kiểm tra format fail vì file khác thì báo riêng, không format các file đó cho qua.
 3. Hành vi mới hoặc lỗi vừa sửa có test nếu dự án đã có chỗ đặt test. Không dựng framework test mới và không thêm test giả chỉ để lệnh thoát 0, trừ khi người dùng yêu cầu thiết lập test.
 
 **Ngoại lệ:** với script dùng một lần hoặc prototype, chỉ cần format nếu đã có formatter; test là tùy chọn.

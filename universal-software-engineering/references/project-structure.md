@@ -37,12 +37,12 @@ File 350 dòng mà gắn kết chặt, chỉ một trách nhiệm thì không b�
 
 - Tính năng **không import chéo** vào ruột của tính năng khác. Cần dùng chung thì đưa phần chung vào `shared/` (hoặc `common/`), và chỉ làm vậy khi có từ 3 chỗ dùng thực tế.
 - Nếu tính năng A phải gọi tính năng B, gọi qua một giao diện công khai nhỏ của B (một vài hàm xuất ra rõ ràng), không với tay vào file nội bộ.
-- Mỗi tính năng có test riêng nằm trong hoặc cạnh thư mục của nó.
+- Nếu dự án đã có chỗ đặt test, test của tính năng nằm trong hoặc cạnh thư mục của nó. Không tạo khung test mới chỉ vì tách thư mục hay vì muốn có file test.
 - Tránh phụ thuộc vòng (A gọi B, B gọi lại A); nếu xảy ra, đó là dấu hiệu ranh giới tính năng chưa đúng.
 
 ## 5. Ví dụ theo ngôn ngữ
 
-Các cây thư mục dưới đây là hình dạng khi một tính năng đã có nhiều trách nhiệm khác nhau. Không dùng chúng làm khung dựng sẵn cho dự án mới hoặc tính năng còn nhỏ. Mục 6 mới là cách bắt đầu.
+Các cây thư mục dưới đây là hình dạng khi một tính năng đã có nhiều trách nhiệm khác nhau. Không dùng chúng làm khung dựng sẵn cho dự án mới hoặc tính năng còn nhỏ. File test trong ví dụ không có nghĩa là phải tạo khung test mới. Mục 6 mới là cách bắt đầu.
 
 ### Python
 ```

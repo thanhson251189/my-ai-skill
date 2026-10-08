@@ -9,20 +9,20 @@
 ## Lệnh kiểm tra trước khi báo hoàn thành
 Nếu dự án đã có lệnh kiểm tra (script, Makefile, CI), chạy lệnh đó. Không chạy `ruff` hay `pyright` trên dự án đang dùng công cụ khác.
 
-Nếu chưa có toolchain và đang tạo dự án mới, cài vào dự án rồi chạy từ môi trường đó, không dùng bản cài tạm ngoài lockfile:
+Nếu chưa có toolchain và đang tạo dự án mới, cài vào dự án rồi chạy từ môi trường đó, không dùng bản cài tạm ngoài lockfile. Cả cây là phần vừa tạo, nên được kiểm tra cả cây:
 
 ```bash
 uv add --dev ruff pyright pytest
+uv run ruff format .
 uv run ruff check .
-uv run ruff format --check .
 uv run pyright
 uv run pytest
 ```
 
-Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
+Dự án đã có code thì không dùng khối lệnh trên để format hay lint cả repo. Đã có công cụ nhưng không có script gom: chỉ chạy trên file vừa sửa, ví dụ `uv run ruff format path/to/file.py` rồi `uv run ruff check path/to/file.py`. `pyright` báo lỗi ở file không đụng tới thì ghi riêng, không sửa file đó. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
 
 ## Thực hành
-- **Type hints đầy đủ** cho tham số và kiểu trả về của mọi hàm. Type hint chỉ có giá trị khi có pyright/mypy chạy kiểm tra.
+- **Type hint cho hàm mới và hàm vừa sửa** (tham số và kiểu trả về). Không thêm hint hàng loạt cho hàm không đụng tới. Script một lần hoặc prototype không bắt buộc. Type hint chỉ có giá trị khi có pyright/mypy chạy kiểm tra.
 - Dùng `pathlib.Path` cho đường dẫn, không nối chuỗi thủ công.
 - Dùng module `logging` thay cho `print()` trong mã ứng dụng (print chỉ chấp nhận trong script nhỏ hoặc output CLI có chủ đích).
 - **Bắt exception cụ thể**, không dùng `except:` trần hay `except Exception: pass`, vì sẽ che mất lỗi thật.

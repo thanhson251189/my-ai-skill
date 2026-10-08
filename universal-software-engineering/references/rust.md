@@ -1,15 +1,17 @@
 # Rust
 
 ## Lệnh kiểm tra trước khi báo hoàn thành
-Chạy lệnh của dự án nếu đã có. Nếu chưa có, dùng:
+Chạy lệnh của dự án nếu đã có. Nếu đang tạo dự án mới và cả cây là phần vừa tạo:
 
 ```bash
-cargo fmt --check
-cargo clippy --all-targets -- -D warnings
+cargo fmt
+cargo clippy --all-targets
 cargo test
 ```
 
-`-D warnings` chỉ dùng khi dự án đã coi warning là lỗi, hoặc khi đang tạo dự án mới. Không tự thêm cờ này vào dự án đang cho phép warning.
+Không thêm `-D warnings` hay `-Werror`, kể cả dự án mới. Warning do code vừa viết thì sửa. Warning có sẵn thì báo, không đổi cấu hình để biến warning thành lỗi.
+
+Dự án đã có code: `rustfmt` đúng file vừa sửa. Không chạy `cargo fmt` cả package nếu package còn file chưa format ngoài phạm vi thay đổi. `cargo test` và `cargo clippy` fail vì chỗ không đụng tới thì báo riêng, không sửa chỗ đó cho qua.
 
 ## Thực hành
 - **Xử lý lỗi bằng `Result` và kiểu lỗi sẵn có của crate.** Chỉ thêm `anyhow` cho app/CLI, hoặc `thiserror` cho thư viện, khi lỗi cần ngữ cảnh hay kiểu riêng mà thư viện chuẩn làm code rối hơn, và chỉ khi được phép thêm dependency.

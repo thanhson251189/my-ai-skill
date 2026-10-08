@@ -14,7 +14,7 @@ Nhóm này không có một lệnh terminal bắt buộc. Chưa làm bước ki�
 - Luôn có `Option Explicit` ở đầu module.
 - Không dùng `.Select` / `.Activate`; thao tác trực tiếp trên đối tượng Range/Worksheet.
 - Đọc cả vùng vào mảng (`arr = rng.Value`), xử lý trong bộ nhớ, rồi ghi lại một lần. Một ô thì `rng.Value` là giá trị đơn, không phải mảng. Chỉ gán thẳng vào mảng khi vùng có từ hai ô; một ô thì bọc thành mảng trước khi xử lý chung.
-- Tắt cập nhật màn hình khi chạy: `Application.ScreenUpdating = False`, và **luôn bật lại** (kể cả khi có lỗi, dùng `On Error GoTo` để dọn dẹp).
+- Tắt cập nhật màn hình khi chạy: lưu giá trị cũ của `Application.ScreenUpdating`, gán `False`, rồi khôi phục đúng giá trị cũ kể cả khi có lỗi (`On Error GoTo`). Không gán cứng `True` lúc kết thúc, vì caller có thể đang tắt màn hình.
 
 ## Google Apps Script
 - Dùng `getValues()` / `setValues()` theo vùng, không `getValue()` từng ô.

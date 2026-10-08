@@ -1,17 +1,18 @@
 # Go
 
 ## Lệnh kiểm tra trước khi báo hoàn thành
-Chạy lệnh của dự án nếu đã có. Nếu chưa có:
+Chạy lệnh của dự án nếu đã có. Nếu chưa có, chỉ kiểm tra file và package vừa sửa:
 
 ```bash
-test -z "$(gofmt -l .)"
-go vet ./...
-go test ./...
+gofmt -w path/to/changed.go
+gofmt -l path/to/changed.go
+go vet ./path/to/package
+go test ./path/to/package
 ```
 
-`gofmt -l` luôn thoát mã 0 dù còn file chưa format, nên không dùng riêng lệnh đó để kết luận đạt. `test -z` fail khi còn đường dẫn được in ra. Shell không có `test` thì coi là fail nếu `gofmt -l .` in bất kỳ đường dẫn nào.
+`gofmt -l` luôn thoát mã 0 dù file chưa format, nên không dùng riêng lệnh đó để kết luận đạt. Fail nếu lệnh in ra đường dẫn. Không chạy `gofmt -w .` trên repo đã có code. Dự án mới, cả cây là phần vừa tạo, thì dùng `gofmt -w .`, `gofmt -l .` và `go test ./...`.
 
-`golangci-lint run` chỉ khi dự án đã cấu hình hoặc công cụ đã có sẵn. Không tự cài. Với code có goroutine, chạy thêm `go test -race ./...` nếu toolchain chạy được race detector.
+`golangci-lint run` chỉ khi dự án đã cấu hình hoặc công cụ đã có sẵn. Không tự cài. Với code có goroutine, chạy thêm `go test -race` trên package vừa sửa nếu toolchain chạy được race detector.
 
 ## Thực hành
 - **Kiểm tra lỗi tường minh ngay sau khi gọi hàm** và bọc thêm ngữ cảnh:
