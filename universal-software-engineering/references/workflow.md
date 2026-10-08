@@ -48,8 +48,8 @@ Dùng lockfile và **commit nó vào git** để dự án chạy lại được 
 | Ngôn ngữ | Lockfile (commit) | Nên đưa vào `.gitignore` |
 |---|---|---|
 | Python (uv) | `uv.lock` | `.venv/`, `__pycache__/`, `.pytest_cache/`, `.ruff_cache/` |
-| Rust | `Cargo.lock` với binary. Library thì theo quy ước sẵn có của crate, không tự commit hoặc xóa | `target/` |
-| TypeScript/JS | `package-lock.json`, `pnpm-lock.yaml`, `bun.lock` hoặc `bun.lockb` (giữ đúng một file dự án đang có, không đổi loại) | `node_modules/`, `dist/`, `.next/` |
+| Rust | `Cargo.lock` với binary và crate ứng dụng mới. Crate thư viện mới thì không commit `Cargo.lock`. Crate đã có thì theo quy ước sẵn có, không tự commit hoặc xóa | `target/` |
+| TypeScript/JS | `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock`, `bun.lock` hoặc `bun.lockb` (giữ đúng một file dự án đang có, không đổi loại) | `node_modules/`, `dist/`, `.next/` |
 | Go | `go.sum` (cùng `go.mod`) | `bin/`, file thực thi build ra |
 | C/C++ | `conan.lock` nếu dùng Conan. Với vcpkg thì commit `vcpkg.json`; `builtin-baseline` là field trong file đó, không phải file riêng, và không được bỏ `vcpkg.json` khỏi git | `build/`, `*.o`, `*.exe` |
 | Mọi ngôn ngữ | | `.env`, `*.log`, file IDE chỉ của máy mình. Không thêm `.vscode/` vào `.gitignore` nếu repo đang commit cấu hình dùng chung |

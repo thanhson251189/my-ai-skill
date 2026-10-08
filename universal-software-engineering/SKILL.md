@@ -38,7 +38,7 @@ Tổ chức theo tính năng khi tính năng đã đủ lớn: **một thư mụ
 
 # "Hoàn thành" nghĩa là gì
 
-Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Dự án chưa có lệnh nào thì dùng lệnh mặc định trong file tham chiếu của ngôn ngữ đang sửa, chỉ trên file vừa sửa. Lệnh ghi `.` hoặc `./...` chỉ dùng khi đang tạo dự án mới và cả cây là phần vừa tạo. Không được tuyên bố "xong" khi chưa chạy. Không chạy được thì nói rõ lý do và đưa lệnh để người dùng tự chạy.
+Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Dự án chưa có lệnh nào thì dùng lệnh mặc định trong file tham chiếu của ngôn ngữ đang sửa, chỉ trên file vừa sửa. Lệnh ghi `.` hoặc `./...` chỉ dùng khi đang tạo dự án mới và cả cây là phần vừa tạo. Đường dẫn trong ví dụ (`path/to/file.py`, `script.sh`) là chỗ giữ; thay bằng file vừa sửa, không chạy nguyên chữ đó. Không được tuyên bố code đã pass khi chưa chạy được lệnh. Máy không có runtime của ngôn ngữ (Excel, Apps Script, database) thì đưa đúng bước để người dùng tự chạy: đó là xong phần kiểm tra, không phải đã chứng minh code đúng, cũng không phải fail.
 
 1. Lệnh kiểm tra không còn lỗi mới do thay đổi này. Không tự bật `-Werror`, `-D warnings` hay đổi bộ lint. Nếu lệnh đã fail từ trước khi sửa, không tự sửa các lỗi cũ. Lấy mức nền bằng cách chạy trên bản gốc, hoặc chỉ kiểm tra file vừa sửa, rồi báo riêng các lỗi có sẵn.
 2. Phần code vừa sửa đã được format bằng formatter của dự án, nếu dự án có. Chỉ format file vừa sửa. Lệnh kiểm tra format fail vì file khác thì báo riêng, không format các file đó cho qua.

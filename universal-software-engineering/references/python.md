@@ -20,7 +20,7 @@ uv run pyright
 
 Chỉ chạy `uv run pytest` khi đã có file test. Chưa có thì báo chưa có test. Pytest thoát 5 khi không thu thập được test; đó không phải fail. Không tạo test rỗng và không thêm `addopts` chỉ để lệnh thoát 0.
 
-Dự án đã có code thì không dùng khối lệnh trên để format hay lint cả repo. Đã có công cụ nhưng không có script gom: chỉ chạy trên file vừa sửa, ví dụ `uv run ruff format path/to/file.py` rồi `uv run ruff check path/to/file.py`. `pyright` báo lỗi ở file không đụng tới thì ghi riêng, không sửa file đó. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
+Dự án đã có code thì không dùng khối lệnh trên để format hay lint cả repo. Đã có công cụ nhưng không có script gom: chỉ chạy binary của dự án trên file vừa sửa. Dự án dùng uv thì `uv run ruff format path/to/file.py`, `uv run ruff check path/to/file.py`, rồi `uv run pyright path/to/file.py`. Không gọi `uv run` nếu dự án không dùng uv. Không chạy pyright cả dự án chỉ để lệnh thoát 0. Lỗi ở file không đụng tới thì ghi riêng, không sửa file đó. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
 
 ## Thực hành
 - **Type hint cho hàm mới và hàm vừa sửa** (tham số và kiểu trả về). Không thêm hint hàng loạt cho hàm không đụng tới. Script một lần hoặc prototype không bắt buộc. Type hint chỉ có giá trị khi có pyright/mypy chạy kiểm tra.

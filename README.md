@@ -13,7 +13,7 @@ Pi nạp skill theo thứ tự. Trùng tên thì bản gặp trước thắng, b
 3. `~/.pi/agent/skills/`
 4. `~/.agents/skills/`
 
-Đường dẫn trong `settings.json` (`skills`) của cùng scope được nạp trước bản tự tìm. `--skill` trên lệnh gọi Pi thắng các bản tự tìm.
+Đường dẫn trong `settings.json` (`skills`) của cùng scope được nạp trước bản tự tìm. Gói Pi (`packages`) đứng sau bản tự tìm của user. `--skill` chỉ được nạp thêm; trùng tên thì bản đã nạp trước thắng. Muốn ép một bản: `pi --no-skills --skill <đường-dẫn>`.
 
 Chỉ giữ một bản. Bản ở `~/.pi/agent/skills/` che bản ở `~/.agents/skills/`. `skills update` không sửa bản bị che. `skills list` 1.7.1 không liệt kê bản copy tay trong `~/.pi/agent/skills/`; thiếu tên trong list không có nghĩa là Pi chưa nạp skill. List có thể hiện cùng tên ở thư mục agent khác (`~/.claude/skills`, `~/.codex/skills`, ...). Đó không phải bản Pi nạp. Pi nạp bản trong `~/.pi/agent/skills/` trước, nếu thư mục đó còn.
 

@@ -14,7 +14,18 @@ Nhóm này không có một lệnh terminal bắt buộc. Chạy được ứng 
 - Luôn có `Option Explicit` ở đầu module.
 - Không dùng `.Select` / `.Activate`; thao tác trực tiếp trên đối tượng Range/Worksheet.
 - Đọc cả vùng vào mảng (`arr = rng.Value`), xử lý trong bộ nhớ, rồi ghi lại một lần. Một ô thì `rng.Value` là giá trị đơn, không phải mảng. Chỉ gán thẳng vào mảng khi vùng có từ hai ô; một ô thì bọc thành mảng trước khi xử lý chung.
-- Tắt cập nhật màn hình khi chạy: lưu giá trị cũ của `Application.ScreenUpdating`, gán `False`, rồi khôi phục đúng giá trị cũ kể cả khi có lỗi (`On Error GoTo`). Không gán cứng `True` lúc kết thúc, vì caller có thể đang tắt màn hình.
+- Tắt cập nhật màn hình khi chạy: lưu giá trị cũ của `Application.ScreenUpdating`, gán `False`, rồi khôi phục đúng giá trị cũ kể cả khi có lỗi. Không gán cứng `True` lúc kết thúc, vì caller có thể đang tắt màn hình. Phải `Exit Sub` trước nhãn lỗi, không để nhãn nằm ngay dưới code thành công:
+  ```vb
+  previousUpdating = Application.ScreenUpdating
+  Application.ScreenUpdating = False
+  On Error GoTo CleanFail
+  ' ...
+  Application.ScreenUpdating = previousUpdating
+  Exit Sub
+CleanFail:
+  Application.ScreenUpdating = previousUpdating
+  Err.Raise Err.Number, Err.Source, Err.Description
+  ```
 
 ## Google Apps Script
 - Dùng `getValues()` / `setValues()` theo vùng, không `getValue()` từng ô.
