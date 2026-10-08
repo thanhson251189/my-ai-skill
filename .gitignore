@@ -1,0 +1,7 @@
+# Output thừa từ lệnh dò skill (redirect stdout/stderr), không phải file repo
+.agents-snip.txt
+.codex-prompt.err
+.codex-prompt.json
+.grok-inspect.json
+.skills-list.err
+.skills-list.json
