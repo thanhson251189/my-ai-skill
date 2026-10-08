@@ -25,6 +25,7 @@ Không che triệu chứng: không thêm `try/catch` rỗng, không bỏ qua l�
 ## 3. Git và an toàn thao tác
 
 **Commit:**
+- **Không tự `commit` hay `push`.** Chỉ commit/push khi người dùng yêu cầu rõ.
 - Khuyên người dùng commit thường xuyên, mỗi commit một thay đổi có ý nghĩa (một tính năng, một lỗi), với message rõ ràng nói *làm gì và vì sao*.
 - Trước khi bắt đầu một thay đổi lớn, nhắc commit trạng thái đang chạy tốt để có điểm quay lại.
 

@@ -1,7 +1,7 @@
 ---
 name: universal-software-engineering
 license: MIT
-description: "Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ, viết bằng tiếng Việt, cho code tinh gọn. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành. Không bắt mã nguồn hay tên định danh phải viết bằng tiếng Việt. Keywords: clean code, lint, format, refactor, code review, debugging, project setup."
+description: "Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ, viết bằng tiếng Việt, cho code tinh gọn. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành. Không dùng khi chỉ hỏi khái niệm hoặc giải thích mà không sửa file. Không bắt mã nguồn hay tên định danh phải viết bằng tiếng Việt. Keywords: clean code, lint, format, refactor, code review, debugging, project setup."
 compatibility: Không cần runtime riêng. Lệnh trong file tham chiếu chỉ là mặc định khi dự án chưa có toolchain.
 ---
 
@@ -38,13 +38,18 @@ Tổ chức theo tính năng khi tính năng đã đủ lớn: **một thư mụ
 
 # "Hoàn thành" nghĩa là gì
 
-Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Dự án chưa có lệnh nào thì dùng lệnh mặc định trong file tham chiếu của ngôn ngữ đang sửa, chỉ trên file vừa sửa. Lệnh ghi `.` hoặc `./...` chỉ dùng khi đang tạo dự án mới và cả cây là phần vừa tạo. Đường dẫn trong ví dụ (`path/to/file.py`, `script.sh`) là chỗ giữ; thay bằng file vừa sửa, không chạy nguyên chữ đó. Không được tuyên bố code đã pass khi chưa chạy được lệnh. Máy không có runtime của ngôn ngữ (Excel, Apps Script, database) thì đưa đúng bước để người dùng tự chạy: đó là xong phần kiểm tra, không phải đã chứng minh code đúng, cũng không phải fail.
+Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Ba quy tắc dưới là bản duy nhất; file tham chiếu chỉ ghi lệnh và điểm riêng của từng ngôn ngữ, không nhắc lại. Dự án chưa có lệnh nào thì dùng lệnh mặc định trong file tham chiếu của ngôn ngữ đang sửa, chỉ trên file vừa sửa. Lệnh ghi `.` hoặc `./...` chỉ dùng khi đang tạo dự án mới và cả cây là phần vừa tạo. Đường dẫn trong ví dụ (`path/to/file.py`, `script.sh`) là chỗ giữ; thay bằng file vừa sửa, không chạy nguyên chữ đó. Không được tuyên bố code đã pass khi chưa chạy được lệnh. Máy không có runtime của ngôn ngữ (Excel, Apps Script, database) thì đưa đúng bước để người dùng tự chạy: đó là xong phần kiểm tra, không phải đã chứng minh code đúng, cũng không phải fail.
 
 1. Lệnh kiểm tra không còn lỗi mới do thay đổi này. Không tự bật `-Werror`, `-D warnings` hay đổi bộ lint. Nếu lệnh đã fail từ trước khi sửa, không tự sửa các lỗi cũ. Lấy mức nền bằng cách chạy trên bản gốc, hoặc chỉ kiểm tra file vừa sửa, rồi báo riêng các lỗi có sẵn.
 2. Phần code vừa sửa đã được format bằng formatter của dự án, nếu dự án có. Chỉ format file vừa sửa. Lệnh kiểm tra format fail vì file khác thì báo riêng, không format các file đó cho qua.
 3. Hành vi mới hoặc lỗi vừa sửa có test nếu dự án đã có chỗ đặt test. Không dựng framework test mới và không thêm test giả chỉ để lệnh thoát 0, trừ khi người dùng yêu cầu thiết lập test. Chưa có file test thì báo chưa có test; đó không phải fail của thay đổi này. Không chạy test runner rồi đổi config chỉ để nó thoát 0.
 
 **Ngoại lệ:** với script dùng một lần hoặc prototype, chỉ cần format nếu đã có formatter; test là tùy chọn.
+
+# Ví dụ nhanh
+
+Yêu cầu "sửa bug đăng nhập": chỉ đụng file đăng nhập, chạy kiểm tra trên file đó, tóm tắt file đã đổi và vì sao.
+Không làm thêm: format cả repo, dựng thư mục `shared/`, thêm framework test, tự commit.
 
 # Chọn file theo ngôn ngữ
 

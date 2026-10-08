@@ -1,7 +1,7 @@
 # C / C++
 
 ## Cờ cảnh báo khi chưa có hệ build
-- GCC/Clang: `-Wall -Wextra`. MSVC: `/W4`. Không tự bật `-Werror` hay `/WX` nếu dự án chưa bật.
+- GCC/Clang: `-Wall -Wextra`. MSVC: `/W4`.
 - Không cài `clang-format` hay `clang-tidy` cho dự án mới. Chỉ dùng khi đã có sẵn, và format chỉ khi có file cấu hình như mục dưới.
 
 ## Lệnh kiểm tra trước khi báo hoàn thành

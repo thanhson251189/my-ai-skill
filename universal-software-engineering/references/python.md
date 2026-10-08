@@ -18,9 +18,9 @@ uv run ruff check .
 uv run pyright
 ```
 
-Chỉ chạy `uv run pytest` khi đã có file test. Chưa có thì báo chưa có test. Pytest thoát 5 khi không thu thập được test; đó không phải fail. Không tạo test rỗng và không thêm `addopts` chỉ để lệnh thoát 0.
+Chỉ chạy `uv run pytest` khi đã có file test. Pytest thoát 5 khi không thu thập được test; đó không phải fail. Không thêm `addopts` chỉ để lệnh thoát 0.
 
-Dự án đã có code thì không dùng khối lệnh trên để format hay lint cả repo. Đã có công cụ nhưng không có script gom: chỉ chạy đúng binary dự án đang dùng, trên file vừa sửa. Ví dụ chỉ khi dự án dùng cả uv và ruff/pyright: `uv run ruff format path/to/file.py`, `uv run ruff check path/to/file.py`, rồi `uv run pyright path/to/file.py`. Không gọi `uv run` nếu dự án không dùng uv. Không gọi ruff hay pyright nếu dự án không dùng công cụ đó. Không chạy pyright cả dự án chỉ để lệnh thoát 0. Lỗi ở file không đụng tới thì ghi riêng, không sửa file đó. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
+Dự án đã có code thì không dùng khối lệnh trên. Đã có công cụ nhưng không có script gom: ví dụ chỉ khi dự án dùng cả uv và ruff/pyright thì `uv run ruff format path/to/file.py`, `uv run ruff check path/to/file.py`, rồi `uv run pyright path/to/file.py`. Trình quản lý hay công cụ khác thì dùng đúng lệnh của dự án đó.
 
 ## Thực hành
 - **Type hint cho hàm mới và hàm vừa sửa** (tham số và kiểu trả về). Không thêm hint hàng loạt cho hàm không đụng tới. Script một lần hoặc prototype không bắt buộc. Type hint chỉ có giá trị khi có pyright/mypy chạy kiểm tra.
