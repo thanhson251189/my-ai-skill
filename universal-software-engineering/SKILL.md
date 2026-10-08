@@ -13,7 +13,7 @@ compatibility: Không cần runtime riêng. Lệnh trong file tham chiếu chỉ
 - **Không nuốt lỗi âm thầm.** Mọi lỗi phải được log kèm ngữ cảnh hoặc trả về qua kiểu dữ liệu xử lý lỗi rõ ràng, vì lỗi bị nuốt sẽ biến thành bug khó truy vết về sau. Không log secret, token hay mật khẩu.
 - **Không hardcode secret** (API key, mật khẩu, token). Đọc từ biến môi trường hoặc file cấu hình nằm ngoài git.
 - **Hỏi lại trước thay đổi lớn:** refactor diện rộng, đổi cấu trúc thư mục, đổi thư viện hoặc framework chính, thêm toolchain vào dự án đã có.
-- **Chỉ ra phần thay đổi, không dán cả file.** Sửa file bằng công cụ sửa của agent, không dán nguyên file rồi coi như đã sửa. Sửa nhỏ: nêu file và khối đã đổi, kèm vài dòng ngữ cảnh. Sửa lớn hoặc rải nhiều chỗ: liệt kê file nào đổi và hành vi đổi ra sao.
+- **Chỉ ra phần thay đổi, không dán cả file trong câu trả lời.** Sửa file có sẵn bằng công cụ sửa của agent. File mới thì tạo file. Không dán nguyên file trong câu trả lời rồi coi như đã sửa. Sửa nhỏ: nêu file và khối đã đổi, kèm vài dòng ngữ cảnh. Sửa lớn hoặc rải nhiều chỗ: liệt kê file nào đổi và hành vi đổi ra sao.
 
 # Comment và giải thích (người dùng thiên về vibe coding)
 
@@ -50,6 +50,8 @@ Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án v
 
 Chỉ đọc file của ngôn ngữ đang làm việc. Mọi đường dẫn trong skill tính từ thư mục chứa `SKILL.md`, không tính từ thư mục làm việc. Lệnh kiểm tra trong file tham chiếu là phương án dự phòng, không phải lệnh bắt buộc khi dự án đã có cách kiểm tra riêng.
 
+VBA, Google Apps Script và Office Scripts chỉ dùng `references/office-automation.md`. Không mở `references/typescript.md` cho Apps Script hay Office Scripts, dù file là TypeScript hoặc JavaScript.
+
 | Ngôn ngữ | File |
 |---|---|
 | Cấu trúc thư mục, tách/gộp file | `references/project-structure.md` |
@@ -61,6 +63,6 @@ Chỉ đọc file của ngôn ngữ đang làm việc. Mọi đường dẫn tro
 | C / C++ | `references/cpp.md` |
 | Shell / Bash | `references/bash.md` |
 | SQL / Database | `references/sql.md` |
-| VBA / Apps Script / Office Scripts | `references/office-automation.md` |
+| VBA / Apps Script / Office Scripts | `references/office-automation.md` (không kèm `typescript.md`) |
 
 Nếu dự án dùng nhiều ngôn ngữ, đọc file của từng ngôn ngữ liên quan.

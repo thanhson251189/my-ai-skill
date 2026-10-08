@@ -18,6 +18,8 @@ Skill dùng chung cho Pi, Claude Code, Codex, OpenCode và Grok. Mỗi agent có
 
 Trên Windows, công cụ cài thường copy thành file thường, không symlink. Các bản không tự theo repo. Sửa skill xong phải cài lại từng agent, không chỉ một chỗ.
 
+Grok và OpenCode còn quét `~/.claude/skills`. Bản trong thư mục riêng và bản Claude phải cùng nội dung. Lệch nhau thì agent có thể nạp bản cũ.
+
 ## Cài vào Pi
 
 Pi nạp skill theo thứ tự. Trùng tên thì bản gặp trước thắng, bản sau bị bỏ qua kèm cảnh báo:
@@ -29,7 +31,7 @@ Pi nạp skill theo thứ tự. Trùng tên thì bản gặp trước thắng, b
 
 Đường dẫn trong `settings.json` (`skills`) của cùng scope được nạp trước bản tự tìm. Gói Pi (`packages`) đứng sau bản tự tìm của user. `--skill` chỉ được nạp thêm; trùng tên thì bản đã nạp trước thắng. Muốn ép một bản: `pi --no-skills --skill <đường-dẫn>`.
 
-Chỉ giữ một bản. Bản ở `~/.pi/agent/skills/` che bản ở `~/.agents/skills/`. `skills update` không sửa bản bị che. `skills list` 1.7.1 không liệt kê bản copy tay trong `~/.pi/agent/skills/`; thiếu tên trong list không có nghĩa là Pi chưa nạp skill. List có thể hiện cùng tên ở thư mục agent khác (`~/.claude/skills`, `~/.codex/skills`, ...). Đó không phải bản Pi nạp. Pi nạp bản trong `~/.pi/agent/skills/` trước, nếu thư mục đó còn.
+Chỉ giữ một bản. Bản ở `~/.pi/agent/skills/` che bản ở `~/.agents/skills/`. `skills update` không sửa bản bị che. `skills list -g` 1.7.1 gộp trùng tên thành một dòng. Dòng đó có thể chỉ hiện `~/.claude/skills/...` và gắn Codex, Grok, OpenCode. Đó không chứng minh các agent đó đang nạp file Claude, và không gồm bản copy tay trong `~/.pi/agent/skills/`. Thiếu tên trong list không có nghĩa là Pi chưa nạp skill. Pi nạp bản trong `~/.pi/agent/skills/` trước, nếu thư mục đó còn.
 
 `npx skills` 1.7.1 với `-a pi` không ghi vào `~/.pi/agent/skills/`. Có `-g` thì ghi `~/.agents/skills/`. Không có `-g` thì ghi `.agents/skills/` của dự án, và Pi chỉ đọc bản đó sau khi trust dự án.
 

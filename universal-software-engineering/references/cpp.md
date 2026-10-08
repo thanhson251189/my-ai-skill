@@ -7,7 +7,7 @@
 ## Lệnh kiểm tra trước khi báo hoàn thành
 Chạy target build và test của dự án (`cmake`, `make`, Meson, MSBuild...). Theo cờ cảnh báo và bộ test đang có.
 
-Nếu chưa có hệ build, biên dịch đúng file vừa sửa với cờ cảnh báo ở trên, rồi chạy test nếu có. Không bịa test runner.
+Nếu chưa có hệ build, chỉ biên dịch khi file vừa sửa là chương trình độc lập: có `main`, không cần include path hay thư viện của dự án. Lệnh tạm, không ghi vào file build. File không dịch riêng được thì báo chưa có hệ build. Không bịa include path, không tạo CMake hay Makefile chỉ để biên dịch được, không bịa test runner.
 
 `clang-format -i` chỉ khi đã có `.clang-format` hoặc `_clang-format` ở file hay thư mục cha. Không truyền `-style=` tự bịa. Chỉ có binary mà không có file cấu hình thì không format: style mặc định LLVM viết lại cả file.
 

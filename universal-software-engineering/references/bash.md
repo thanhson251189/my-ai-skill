@@ -12,7 +12,7 @@ shfmt -d path/to/the-changed-script.sh
 ```
 
 ## Thực hành
-Chỉ cho script Bash. Không thêm shebang, `set -euo pipefail` hay `[[ ]]` vào file `.ps1`.
+Chỉ cho script Bash. Không thêm shebang, `set -euo pipefail` hay `[[ ]]` vào file `.ps1`. Không đổi `#!/bin/sh` thành bash, và không thêm hai cú pháp đó vào script POSIX sh.
 - Script chạy trực tiếp thì mở đầu bằng:
   ```bash
   #!/usr/bin/env bash
