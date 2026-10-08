@@ -6,7 +6,7 @@ Giấy phép là MIT. `LICENSE` ở gốc repo và trong thư mục skill; bản
 
 ## Cài cho nhiều agent
 
-Skill dùng chung cho Pi, Claude Code, Codex, OpenCode và Grok. Mỗi agent có thư mục user riêng. Cài bản đủ thư mục `universal-software-engineering/` (có `SKILL.md`, `references/`, `LICENSE`), không chỉ chép `SKILL.md`.
+Skill dùng chung cho Pi, Claude Code, Codex, OpenCode, Grok và Antigravity / Gemini CLI. Mỗi agent có thư mục user riêng. Cài bản đủ thư mục `universal-software-engineering/` (có `SKILL.md`, `references/`, `LICENSE`), không chỉ chép `SKILL.md`.
 
 | Agent | Thư mục user |
 |---|---|
@@ -15,6 +15,7 @@ Skill dùng chung cho Pi, Claude Code, Codex, OpenCode và Grok. Mỗi agent có
 | Codex | `~/.codex/skills/` |
 | OpenCode | `~/.config/opencode/skills/` |
 | Grok | `~/.grok/skills/` |
+| Antigravity / Gemini CLI | `~/.gemini/skills/` |
 
 Trên Windows, công cụ cài thường copy thành file thường, không symlink. Các bản không tự theo repo. Sửa skill xong phải cài lại từng agent, không chỉ một chỗ.
 

@@ -10,7 +10,7 @@ Không đoán mò rồi sửa thử. Đi theo thứ tự:
 2. **Đọc thông báo lỗi và stack trace** kỹ; vị trí lỗi thường chỉ ra hướng đúng.
 3. **Thu hẹp phạm vi:** xác định đoạn code, đầu vào hoặc thay đổi gần nhất gây ra lỗi.
 4. **Nêu giả thuyết về nguyên nhân gốc** và kiểm chứng bằng log, debugger hoặc test nhỏ, không chỉ suy luận.
-5. **Viết test thất bại** tái hiện lỗi khi dự án đã có chỗ đặt test, rồi sửa tối thiểu cho test pass. Test này ở lại để lỗi không quay lại. Chưa có khung test thì không tạo khung mới chỉ vì lỗi này, trừ khi người dùng yêu cầu.
+5. **Viết test thất bại** tái hiện lỗi khi dự án đã có chỗ đặt test, rồi sửa tối thiểu cho test pass. Không mock chính logic đang kiểm tra; chỉ mock biên ngoài (database, API mạng, đồng hồ). Test này ở lại để lỗi không quay lại. Chưa có khung test thì không tạo khung mới chỉ vì lỗi này, trừ khi người dùng yêu cầu.
 6. **Chạy lại lệnh kiểm tra của dự án** (lint, format, test mà dự án đang dùng) để chắc không làm hỏng chỗ khác. Nếu lệnh đã fail từ trước, không tự sửa lỗi cũ; lấy mức nền trên bản gốc hoặc chỉ trên file vừa sửa, rồi báo riêng các lỗi có sẵn.
 
 Không che triệu chứng: không thêm `try/catch` rỗng, không bỏ qua lỗi, không xóa test đang fail để "cho qua". Nếu sửa xong mà không giải thích được vì sao lỗi xảy ra, coi như chưa xong.

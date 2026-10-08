@@ -29,7 +29,7 @@ Các hàm cùng phục vụ một việc thì nằm chung một file. Tách từ
 
 File 350 dòng mà gắn kết chặt, chỉ một trách nhiệm thì không bắt buộc tách.
 
-**Không áp dụng ngưỡng cho:** file test, code sinh tự động, file cấu hình/dữ liệu tĩnh, và entry point (`main`) chỉ ráp các phần lại.
+**Không áp dụng ngưỡng cho:** file test, code sinh tự động, file cấu hình/dữ liệu tĩnh, entry point (`main`) chỉ ráp các phần lại, và component UI ghép template/style/logic chung một file theo quy ước framework.
 
 **Khi vượt ngưỡng:** báo cho người dùng và đề xuất cách tách (tách thành những file nào, vì sao). Không tự ý refactor, vì đây là thay đổi cấu trúc cần hỏi lại trước.
 
