@@ -10,7 +10,7 @@ go vet ./path/to/package
 go test ./path/to/package
 ```
 
-`gofmt -l` luôn thoát mã 0 dù file chưa format, nên không dùng riêng lệnh đó để kết luận đạt. Fail nếu lệnh in ra đường dẫn. Không chạy `gofmt -w .` trên repo đã có code. Dự án mới, cả cây là phần vừa tạo, thì dùng `gofmt -w .`, `gofmt -l .` và `go test ./...`.
+`gofmt -l` luôn thoát mã 0 dù file chưa format, nên không dùng riêng lệnh đó để kết luận đạt. Fail nếu lệnh in ra đường dẫn. Không chạy `gofmt -w .` trên repo đã có code. Dự án mới, cả cây là phần vừa tạo, thì dùng `gofmt -w .`, `gofmt -l .` và `go test ./...`. Chưa có `go.mod` thì `go mod init <module>` trước. Chưa có module path thì hỏi một câu, không bịa.
 
 `golangci-lint run` chỉ khi dự án đã cấu hình hoặc công cụ đã có sẵn. Không tự cài. Với code có goroutine, chạy thêm `go test -race` trên package vừa sửa nếu toolchain chạy được race detector.
 

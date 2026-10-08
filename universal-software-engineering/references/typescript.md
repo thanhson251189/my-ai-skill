@@ -17,14 +17,13 @@ npm install --save-dev typescript @biomejs/biome vitest
 npm exec biome -- init
 npm exec biome -- check --write .
 npm exec tsc -- --noEmit
-npm exec vitest -- run
 ```
 
 Dự án đã có lockfile của pnpm hoặc bun thì dùng đúng trình quản lý đó thay cho `npm`, với cùng ba gói. Dự án đã có công cụ nhưng không có script: chỉ chạy trên file vừa sửa, ví dụ `npm exec biome -- check --write -- path/to/file.ts`. Không quét cả repo. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
 
 Dự án JavaScript không có `tsconfig.json`: bỏ qua `tsc`. Không tự thêm TypeScript.
 
-Không có file test: báo là chưa có test. Không tạo test rỗng và không đổi config chỉ để lệnh thoát 0.
+Chỉ chạy `npm exec vitest -- run` khi đã có file test. Chưa có thì báo chưa có test. Vitest thoát khác 0 khi không có file test; đó không phải fail. Không tạo test rỗng và không bật `passWithNoTests` chỉ để lệnh thoát 0.
 
 ## Thực hành
 - Bật `"strict": true` trong `tsconfig.json` khi đang tạo dự án TypeScript mới. Dự án đã có thì không tự bật strict nếu việc đó làm vỡ các file không liên quan.

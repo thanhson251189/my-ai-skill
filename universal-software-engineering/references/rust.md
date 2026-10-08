@@ -1,7 +1,7 @@
 # Rust
 
 ## Lệnh kiểm tra trước khi báo hoàn thành
-Chạy lệnh của dự án nếu đã có. Nếu đang tạo dự án mới và cả cây là phần vừa tạo:
+Chạy lệnh của dự án nếu đã có. Nếu đang tạo dự án mới và cả cây là phần vừa tạo, cần có `Cargo.toml` trước các lệnh dưới. Chưa có thì `cargo init` trong thư mục dự án. `cargo new` tạo thư mục con, chỉ dùng khi package phải nằm trong thư mục mới. Chưa có tên package thì hỏi một câu, không bịa:
 
 ```bash
 cargo fmt

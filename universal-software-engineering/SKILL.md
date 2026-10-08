@@ -41,7 +41,7 @@ Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án v
 
 1. Lệnh kiểm tra không còn lỗi mới do thay đổi này. Không tự bật `-Werror`, `-D warnings` hay đổi bộ lint. Nếu lệnh đã fail từ trước khi sửa, không tự sửa các lỗi cũ. Lấy mức nền bằng cách chạy trên bản gốc, hoặc chỉ kiểm tra file vừa sửa, rồi báo riêng các lỗi có sẵn.
 2. Phần code vừa sửa đã được format bằng formatter của dự án, nếu dự án có. Chỉ format file vừa sửa. Lệnh kiểm tra format fail vì file khác thì báo riêng, không format các file đó cho qua.
-3. Hành vi mới hoặc lỗi vừa sửa có test nếu dự án đã có chỗ đặt test. Không dựng framework test mới và không thêm test giả chỉ để lệnh thoát 0, trừ khi người dùng yêu cầu thiết lập test.
+3. Hành vi mới hoặc lỗi vừa sửa có test nếu dự án đã có chỗ đặt test. Không dựng framework test mới và không thêm test giả chỉ để lệnh thoát 0, trừ khi người dùng yêu cầu thiết lập test. Chưa có file test thì báo chưa có test; đó không phải fail của thay đổi này. Không chạy test runner rồi đổi config chỉ để nó thoát 0.
 
 **Ngoại lệ:** với script dùng một lần hoặc prototype, chỉ cần format nếu đã có formatter; test là tùy chọn.
 
