@@ -15,7 +15,7 @@ Dự án đã có code: `cargo fmt -p <package> -- path/to/file.rs` trên đúng
 
 ## Thực hành
 - **Xử lý lỗi bằng `Result` và kiểu lỗi sẵn có của crate.** Chỉ thêm `anyhow` cho app/CLI, hoặc `thiserror` cho thư viện, khi lỗi cần ngữ cảnh hay kiểu riêng mà thư viện chuẩn làm code rối hơn, và chỉ khi được phép thêm dependency.
-- **Không dùng `.unwrap()` trong mã chạy chính**, vì panic sẽ làm sập chương trình khi gặp dữ liệu bất ngờ. Dùng `?`, pattern matching, hoặc `.expect("lý do chi tiết vì sao điều này không thể xảy ra")`. Trong test thì dùng `.unwrap()` thoải mái.
+- **Không dùng `.unwrap()` trong mã chạy chính**, vì panic sẽ làm sập chương trình khi gặp dữ liệu bất ngờ. Dùng `?`, pattern matching, hoặc `.expect("reason this state is unreachable")`. Chuỗi trong `expect` theo ngôn ngữ của dự án, không chép tiếng Việt từ skill. Trong test thì dùng `.unwrap()` thoải mái.
 - **Hạn chế `.clone()` không cần thiết**; ưu tiên mượn (`&str`, `&[T]`) thay vì sở hữu khi chỉ đọc.
 - Tránh over-engineering với generic/trait/lifetime phức tạp khi kiểu cụ thể là đủ. Chỉ trừu tượng hóa khi có từ 3 trường hợp dùng thật.
 - Dùng thư viện chuẩn trước; cân nhắc kỹ trước khi thêm crate mới.

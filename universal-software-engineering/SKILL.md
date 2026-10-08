@@ -23,6 +23,7 @@ Người dùng có thể không tự đọc từng dòng code, nên cần hiểu
 - **Comment chỉ để giải thích "vì sao"**: lý do, ràng buộc hoặc đánh đổi không hiển nhiên (ví dụ giới hạn của API, workaround cho bug, lý do chọn thuật toán).
 - **Docstring ngắn cho hàm hoặc module công khai khi tên và chữ ký chưa nói hết** làm gì, nhận gì, trả về gì. Dùng đúng dạng của ngôn ngữ (docstring Python, `///` Rust, JSDoc/TSDoc, doc comment Go...). Không viết docstring chỉ lặp lại tên hàm.
 - **Đặt tên rõ nghĩa** thay vì tên ngắn kèm comment giải thích. Tên biến, hàm, kiểu theo ngôn ngữ của dự án. Không dịch tên định danh sang tiếng Việt chỉ vì skill viết bằng tiếng Việt.
+- **Comment, docstring, log và message lỗi trong code theo ngôn ngữ của dự án**, không theo tiếng Việt của skill. Không chép câu tiếng Việt từ ví dụ trong skill vào mã nguồn.
 - **Sau khi hoàn thành một tính năng hoặc thay đổi đáng kể**, tóm tắt ngắn bằng ngôn ngữ đơn giản: code làm gì, luồng chạy ra sao, file nào đã đổi và vì sao. Không bỏ qua tóm tắt này; đó là cách người dùng nắm thay đổi mà không cần docstring trên mọi hàm. Tránh thuật ngữ khi không cần; nếu dùng thì giải thích ngắn.
 - Với dự án mới, tạo hoặc cập nhật `README.md` (hoặc `NOTES.md`) ngắn: mục đích, cấu trúc thư mục, cách chạy/test, các quyết định thiết kế chính.
 - Nếu người dùng yêu cầu giải thích sâu hơn cho một đoạn cụ thể, giải thích ngoài code (trong câu trả lời), không nhét vào file.

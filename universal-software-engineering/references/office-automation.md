@@ -23,7 +23,7 @@ Nhóm này không có một lệnh terminal bắt buộc. Chạy được ứng 
   const lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
-    // đọc và ghi theo lô
+    // ...
   } finally {
     lock.releaseLock();
   }
@@ -32,5 +32,5 @@ Nhóm này không có một lệnh terminal bắt buộc. Chạy được ứng 
 - Lưu ý giới hạn thời gian chạy của Apps Script; chia lô nếu dữ liệu lớn.
 
 ## Office Scripts (Excel trên web, viết bằng TypeScript)
-- Áp dụng quy tắc kiểu của `typescript.md` trong cùng thư mục này: không dùng `any`, validate dữ liệu ở biên. Không áp dụng Biome, Vitest hay `tsc` trừ khi dự án đã có các lệnh đó.
+- Không dùng `any`. Dữ liệu từ sheet hoặc người dùng phải được kiểm tra trước khi dùng. Không cài Biome hay Vitest, và không chạy `tsc`, trừ khi dự án đã có đúng lệnh đó. Không mở `typescript.md` để lấy toolchain Node.
 - Đọc/ghi theo vùng với `getValues()` / `setValues()`, hạn chế gọi API cho từng ô.

@@ -12,13 +12,13 @@ go test ./path/to/package
 
 `gofmt -l` luôn thoát mã 0 dù file chưa format, nên không dùng riêng lệnh đó để kết luận đạt. Fail nếu lệnh in ra đường dẫn. Không chạy `gofmt -w .` trên repo đã có code. Dự án mới, cả cây là phần vừa tạo, thì dùng `gofmt -w .`, `gofmt -l .` và `go test ./...`. Chưa có `go.mod` thì `go mod init <module>` trước. Chưa có module path thì hỏi một câu, không bịa. `go test` thoát 0 khi package không có file test; báo chưa có test, không coi là đã kiểm thử.
 
-`golangci-lint run` chỉ khi dự án đã cấu hình hoặc công cụ đã có sẵn. Không tự cài. Với code có goroutine, chạy thêm `go test -race` trên package vừa sửa nếu toolchain chạy được race detector.
+`golangci-lint run` chỉ khi dự án đã cấu hình hoặc công cụ đã có sẵn. Không tự cài. Với code có goroutine, chạy thêm `go test -race` trên package vừa sửa nếu toolchain chạy được race detector. Không chạy được vì thiếu C compiler hoặc race detector thì báo và bỏ qua; đó không phải fail của code vừa sửa.
 
 ## Thực hành
 - **Kiểm tra lỗi tường minh ngay sau khi gọi hàm** và bọc thêm ngữ cảnh:
   ```go
   if err != nil {
-      return fmt.Errorf("mô tả thao tác: %w", err)
+      return fmt.Errorf("read config: %w", err)
   }
   ```
 - Ưu tiên **table-driven tests** cho kiểm thử đơn vị khi dự án đã có test.

@@ -12,7 +12,7 @@ Nếu chưa có hệ build, biên dịch đúng file vừa sửa với cờ cả
 
 `clang-format -i` chỉ khi đã có `.clang-format` hoặc `_clang-format` ở file hay thư mục cha. Không truyền `-style=` tự bịa. Chỉ có binary mà không có file cấu hình thì không format: style mặc định LLVM viết lại cả file.
 
-Sanitizer (`-fsanitize=address,undefined`, hoặc AddressSanitizer của MSVC nếu bản compiler có) chỉ dùng khi compiler hỗ trợ và không làm hỏng build hiện tại.
+Sanitizer (`-fsanitize=address,undefined`, hoặc AddressSanitizer của MSVC nếu bản compiler có) chỉ thêm vào lệnh biên dịch tạm của file vừa sửa, khi compiler hỗ trợ. Không ghi cờ đó vào CMake, Makefile hay file build lâu dài của dự án.
 
 ## Thực hành
 - Theo chuẩn C++ dự án đang đặt. Không tự nâng `-std` hay `/std`. Dự án mới thì C++17 là đủ, trừ khi cần API chỉ có ở chuẩn mới hơn.
