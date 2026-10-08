@@ -1,7 +1,7 @@
 ---
 name: universal-software-engineering
-description: >-
-  Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ cho code tinh gọn, viết bằng tiếng Việt. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành.
+license: MIT
+description: "Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ cho code tinh gọn, viết bằng tiếng Việt. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành."
 compatibility: Không cần runtime riêng. Lệnh trong file tham chiếu chỉ là mặc định khi dự án chưa có toolchain.
 ---
 

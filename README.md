@@ -2,14 +2,22 @@
 
 Quy chuẩn viết code tinh gọn cho agent. Skill nằm trong thư mục `universal-software-engineering`.
 
-Repo chưa có file `LICENSE`. Chưa chọn giấy phép thì không xem code này là tự do sử dụng.
+Giấy phép là MIT. Xem file `LICENSE`.
 
 ## Cài
 
 Đã kiểm tra bằng `npx skills` 1.7.1: `npx skills add . -l` thấy skill ở thư mục gốc, không cần `--full-depth`.
 
+Trong repo đã clone:
+
 ```bash
 npx skills add . --skill universal-software-engineering -a pi -y
+```
+
+Không cần clone, lấy thẳng từ GitHub:
+
+```bash
+npx skills add thanhson251189/my-ai-skill --skill universal-software-engineering -a pi -y
 ```
 
 Đổi `-a` theo agent (`claude-code`, `codex`, `cursor`, `github-copilot`, ...). Danh sách agent nằm trong `npx skills add --help`.
