@@ -10,6 +10,8 @@ Chạy target build và test của dự án (`cmake`, `make`, Meson, MSBuild...)
 
 Nếu chưa có hệ build, biên dịch đúng file vừa sửa với cờ cảnh báo ở trên, rồi chạy test nếu có. Không bịa test runner.
 
+`clang-format -i` chỉ khi đã có `.clang-format` hoặc `_clang-format` ở file hay thư mục cha. Không truyền `-style=` tự bịa. Chỉ có binary mà không có file cấu hình thì không format: style mặc định LLVM viết lại cả file.
+
 Sanitizer (`-fsanitize=address,undefined`, hoặc AddressSanitizer của MSVC nếu bản compiler có) chỉ dùng khi compiler hỗ trợ và không làm hỏng build hiện tại.
 
 ## Thực hành

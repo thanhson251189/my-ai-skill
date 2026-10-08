@@ -35,7 +35,7 @@ File 350 dòng mà gắn kết chặt, chỉ một trách nhiệm thì không b�
 
 ## 4. Quy tắc giữa các tính năng
 
-- Tính năng **không import chéo** vào ruột của tính năng khác. Cần dùng chung thì đưa phần chung vào `shared/` (hoặc `common/`), và chỉ làm vậy khi có từ 3 chỗ dùng thực tế.
+- Tính năng **không import chéo** vào ruột của tính năng khác. Một phần được tính năng khác dùng là tín hiệu tách file, không phải lệnh tạo `shared/`. Chỉ đưa vào `shared/` (hoặc `common/`) khi có từ 3 chỗ dùng thực tế. Một hoặc hai chỗ thì để gần nơi dùng, hoặc gọi qua giao diện công khai.
 - Nếu tính năng A phải gọi tính năng B, gọi qua một giao diện công khai nhỏ của B (một vài hàm xuất ra rõ ràng), không với tay vào file nội bộ.
 - Nếu dự án đã có chỗ đặt test, test của tính năng nằm trong hoặc cạnh thư mục của nó. Không tạo khung test mới chỉ vì tách thư mục hay vì muốn có file test.
 - Tránh phụ thuộc vòng (A gọi B, B gọi lại A); nếu xảy ra, đó là dấu hiệu ranh giới tính năng chưa đúng.

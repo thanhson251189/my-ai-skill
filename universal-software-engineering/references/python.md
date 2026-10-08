@@ -9,7 +9,7 @@
 ## Lệnh kiểm tra trước khi báo hoàn thành
 Nếu dự án đã có lệnh kiểm tra (script, Makefile, CI), chạy lệnh đó. Không chạy `ruff` hay `pyright` trên dự án đang dùng công cụ khác.
 
-Nếu chưa có toolchain và đang tạo dự án mới, cài vào dự án rồi chạy từ môi trường đó, không dùng bản cài tạm ngoài lockfile. Chưa có `pyproject.toml` thì chạy `uv init` trước khối dưới; đã có thì không chạy `uv init`. Cả cây là phần vừa tạo, nên được kiểm tra cả cây:
+Nếu chưa có toolchain và đang tạo dự án mới, cài vào dự án rồi chạy từ môi trường đó, không dùng bản cài tạm ngoài lockfile. Chạy trong thư mục gốc của dự án mới. Thư mục cha đã có `pyproject.toml` mà đây là project riêng thì không chạy `uv add` ở thư mục cha. Chưa có `pyproject.toml` thì chạy `uv init` trước khối dưới; đã có thì không chạy `uv init`. Cả cây là phần vừa tạo, nên được kiểm tra cả cây:
 
 ```bash
 uv add --dev ruff pyright pytest

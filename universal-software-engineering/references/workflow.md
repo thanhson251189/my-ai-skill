@@ -49,7 +49,7 @@ Dùng lockfile và **commit nó vào git** để dự án chạy lại được 
 |---|---|---|
 | Python (uv) | `uv.lock` | `.venv/`, `__pycache__/`, `.pytest_cache/`, `.ruff_cache/` |
 | Rust | `Cargo.lock` với binary. Library thì theo quy ước sẵn có của crate, không tự commit hoặc xóa | `target/` |
-| TypeScript/JS | `package-lock.json`, `pnpm-lock.yaml` hoặc `bun.lock` (dùng đúng một cái) | `node_modules/`, `dist/`, `.next/` |
+| TypeScript/JS | `package-lock.json`, `pnpm-lock.yaml`, `bun.lock` hoặc `bun.lockb` (giữ đúng một file dự án đang có, không đổi loại) | `node_modules/`, `dist/`, `.next/` |
 | Go | `go.sum` (cùng `go.mod`) | `bin/`, file thực thi build ra |
 | C/C++ | `conan.lock` nếu dùng Conan. Với vcpkg thì commit `vcpkg.json`; `builtin-baseline` là field trong file đó, không phải file riêng, và không được bỏ `vcpkg.json` khỏi git | `build/`, `*.o`, `*.exe` |
 | Mọi ngôn ngữ | | `.env`, `*.log`, file IDE chỉ của máy mình. Không thêm `.vscode/` vào `.gitignore` nếu repo đang commit cấu hình dùng chung |

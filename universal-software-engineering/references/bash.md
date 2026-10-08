@@ -1,10 +1,9 @@
 # Shell / Bash
 
 ## Lệnh kiểm tra trước khi báo hoàn thành
-Có `shfmt` thì format đúng file vừa sửa bằng `shfmt -w`, rồi kiểm tra bằng `shfmt -d`. Có `shellcheck` thì chạy trên đúng file đó. Không hardcode tên `script.sh`. Nhiều file thì làm từng file đã đổi. Không tự cài. Thiếu công cụ thì báo và đưa lệnh để người dùng tự chạy. Đó không phải fail của code vừa sửa.
+Có `shellcheck` thì chạy trên đúng file vừa sửa. Có `shfmt` thì chạy `shfmt -d` trên file đó. Chỉ `shfmt -w` trước khi `-d` nếu script mới, hoặc dự án đã có `.editorconfig` hay cấu hình mà shfmt đang dùng. Script có sẵn mà không có cấu hình: không `-w`, vì mặc định tab của shfmt viết lại cả file. Không hardcode tên `script.sh`. Nhiều file thì làm từng file đã đổi. File `.ps1` không dùng `shfmt`, `shellcheck` hay shebang bash. Không tự cài. Thiếu công cụ thì báo và đưa lệnh để người dùng tự chạy. Đó không phải fail của code vừa sửa.
 
 ```bash
-shfmt -w path/to/the-changed-script.sh
 shfmt -d path/to/the-changed-script.sh
 shellcheck path/to/the-changed-script.sh
 ```
