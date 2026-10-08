@@ -1,31 +1,33 @@
 # universal-software-engineering
 
-Quy chuẩn viết code tinh gọn cho agent. Skill nằm trong thư mục `universal-software-engineering`.
+Quy chuẩn viết code tinh gọn cho agent. Skill nằm trong thư mục `universal-software-engineering`, không nằm ở thư mục gốc repo.
 
 Giấy phép là MIT. Xem file `LICENSE`.
 
-## Cài
+## Cài vào Pi
 
-Đã kiểm tra bằng `npx skills` 1.7.1: `npx skills add . -l` thấy skill ở thư mục gốc, không cần `--full-depth`.
+Pi nạp skill theo thứ tự. Trùng tên thì bản gặp trước thắng, bản sau bị bỏ qua kèm cảnh báo:
 
-Pi dùng cho mọi dự án thì thêm `-g`. Trước khi cài, xóa bản chép tay nếu có. Pi nạp `~/.pi/agent/skills/` trước `~/.agents/skills/`. Bản cũ còn đó thì bản CLI mới bị bỏ qua, và `skills update` không sửa bản cũ.
+1. `.pi/skills/` của dự án, nếu dự án đã được trust
+2. `.agents/skills/` của dự án và thư mục cha tới git root, nếu đã trust
+3. `~/.pi/agent/skills/`
+4. `~/.agents/skills/`
 
-Trong repo đã clone:
+Chỉ giữ một bản. Bản ở `~/.pi/agent/skills/` che bản ở `~/.agents/skills/`. `skills update` không sửa bản bị che.
+
+`npx skills` 1.7.1 với `-a pi` không ghi vào `~/.pi/agent/skills/`. Có `-g` thì ghi `~/.agents/skills/`. Không có `-g` thì ghi `.agents/skills/` của dự án, và Pi chỉ đọc bản đó sau khi trust dự án.
+
+Muốn CLI quản lý, xóa bản che trước:
 
 ```bash
 rm -rf ~/.pi/agent/skills/universal-software-engineering
 npx skills add . --skill universal-software-engineering -a pi -g -y
 ```
 
-Không cần clone, lấy thẳng từ GitHub:
+Từ GitHub, đổi `.` thành `thanhson251189/my-ai-skill`. `npx skills add . -l` thấy skill trong thư mục con, không cần `--full-depth`, vì repo không có `SKILL.md` ở gốc.
 
-```bash
-rm -rf ~/.pi/agent/skills/universal-software-engineering
-npx skills add thanhson251189/my-ai-skill --skill universal-software-engineering -a pi -g -y
-```
+Công cụ chép vào `~/.pi/agent/skills/` (CC Switch hoặc copy tay) cũng là bản Pi đọc được. Đừng chạy thêm lệnh CLI ở trên cho cùng skill. Trên Windows, symlink thường thiếu quyền nên công cụ copy thành file thường. Bản đó không theo repo; sửa skill xong phải cài lại.
 
-Đổi `-a` theo agent (`claude-code`, `codex`, `cursor`, `github-copilot`, ...). Danh sách agent nằm trong `npx skills add --help`.
+Đổi `-a` theo agent khác (`claude-code`, `codex`, `cursor`, ...). Danh sách nằm trong `npx skills add --help`.
 
-`skills` 1.7.1 ghi Pi vào `~/.agents/skills/` khi có `-g`, hoặc `.agents/skills/` của dự án khi không có `-g`. Pi chỉ đọc bản trong dự án nếu dự án đã được trust. Đừng chép tay vào `~/.pi/agent/skills/` hoặc `.pi/skills/` nếu muốn CLI quản lý bản cài. Agent khác dùng thư mục mà CLI của nó ghi ra.
-
-Sau khi cài, mở lại agent hoặc chạy lệnh reload của agent đó. Gọi tay bằng `/skill:universal-software-engineering`.
+Sau khi cài, mở lại Pi hoặc chạy `/reload`. Gọi tay bằng `/skill:universal-software-engineering`.

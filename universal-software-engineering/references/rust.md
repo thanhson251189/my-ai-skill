@@ -9,9 +9,9 @@ cargo clippy --all-targets
 cargo test
 ```
 
-Không thêm `-D warnings` hay `-Werror`, kể cả dự án mới. Warning do code vừa viết thì sửa. Warning có sẵn thì báo, không đổi cấu hình để biến warning thành lỗi.
+Không thêm `-D warnings` hay `-Werror`, kể cả dự án mới. Warning do code vừa viết thì sửa. Warning có sẵn thì báo, không đổi cấu hình để biến warning thành lỗi. Thiếu component `clippy` thì báo và bỏ qua lệnh đó; không tự chạy `rustup component add`. Đó không phải fail của code vừa sửa.
 
-Dự án đã có code: `rustfmt` đúng file vừa sửa. Không chạy `cargo fmt` cả package nếu package còn file chưa format ngoài phạm vi thay đổi. `cargo test` và `cargo clippy` fail vì chỗ không đụng tới thì báo riêng, không sửa chỗ đó cho qua.
+Dự án đã có code: `rustfmt path/to/file.rs` trên đúng file vừa sửa. Không chạy `cargo fmt` cả package nếu package còn file chưa format ngoài phạm vi thay đổi. `cargo test` và `cargo clippy` fail vì chỗ không đụng tới thì báo riêng, không sửa chỗ đó cho qua.
 
 ## Thực hành
 - **Xử lý lỗi bằng `Result` và kiểu lỗi sẵn có của crate.** Chỉ thêm `anyhow` cho app/CLI, hoặc `thiserror` cho thư viện, khi lỗi cần ngữ cảnh hay kiểu riêng mà thư viện chuẩn làm code rối hơn, và chỉ khi được phép thêm dependency.

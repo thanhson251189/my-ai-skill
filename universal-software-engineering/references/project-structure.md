@@ -76,7 +76,7 @@ src/
 └── shared/
     └── mod.rs
 ```
-Mỗi file mới phải được khai báo trong `mod.rs` của thư mục cha; nhớ làm bước này mỗi khi thêm file. Dự án rất lớn thì cân nhắc tách thành nhiều crate trong một workspace thay vì thêm hàng trăm module.
+Mỗi file mới phải được khai báo ở module cha mà dự án đang dùng (`mod.rs` hoặc `foo.rs`). Không tự tạo `mod.rs` nếu dự án không dùng kiểu đó. Dự án rất lớn thì cân nhắc tách thành nhiều crate trong một workspace thay vì thêm hàng trăm module.
 
 ### TypeScript / JavaScript
 ```

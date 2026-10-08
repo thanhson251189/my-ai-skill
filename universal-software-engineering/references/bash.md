@@ -1,11 +1,12 @@
 # Shell / Bash
 
 ## Lệnh kiểm tra trước khi báo hoàn thành
-Chạy `shellcheck` và `shfmt -d` trên đúng file vừa sửa, không hardcode tên `script.sh`. Nhiều file thì kiểm tra từng file đã đổi. Chỉ chạy lệnh nào công cụ đã có sẵn; không tự cài. Thiếu công cụ thì báo và đưa lệnh để người dùng tự chạy. Đó không phải fail của code vừa sửa.
+Có `shfmt` thì format đúng file vừa sửa bằng `shfmt -w`, rồi kiểm tra bằng `shfmt -d`. Có `shellcheck` thì chạy trên đúng file đó. Không hardcode tên `script.sh`. Nhiều file thì làm từng file đã đổi. Không tự cài. Thiếu công cụ thì báo và đưa lệnh để người dùng tự chạy. Đó không phải fail của code vừa sửa.
 
 ```bash
-shellcheck path/to/the-changed-script.sh
+shfmt -w path/to/the-changed-script.sh
 shfmt -d path/to/the-changed-script.sh
+shellcheck path/to/the-changed-script.sh
 ```
 
 ## Thực hành

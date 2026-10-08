@@ -19,7 +19,7 @@ npm exec biome -- check --write .
 npm exec tsc -- --noEmit
 ```
 
-Dự án đã có lockfile của pnpm hoặc bun thì dùng đúng trình quản lý đó thay cho `npm`, với cùng ba gói. Dự án đã có công cụ nhưng không có script: chỉ chạy trên file vừa sửa, ví dụ `npm exec biome -- check --write -- path/to/file.ts`. Không quét cả repo. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
+Dự án TypeScript mới đã chọn pnpm hoặc bun thì dùng đúng trình quản lý đó, vẫn chỉ ba gói trong lệnh trên. Không cài ba gói này vào dự án đã có. Dự án đã có công cụ nhưng không có script: chỉ chạy trên file vừa sửa, ví dụ `npm exec biome -- check --write -- path/to/file.ts`. Không quét cả repo. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
 
 Dự án JavaScript không có `tsconfig.json`: bỏ qua `tsc`. Không tự thêm TypeScript.
 

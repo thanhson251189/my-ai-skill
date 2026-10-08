@@ -4,7 +4,7 @@ Nguyên tắc chung: **đọc và ghi dữ liệu theo lô (mảng trong bộ nh
 
 ## Kiểm tra trước khi báo hoàn thành
 
-Nhóm này không có một lệnh terminal bắt buộc. Chưa làm bước kiểm tra tương ứng thì không báo xong. Không mở được ứng dụng thì nói rõ và đưa đúng bước dưới đây để người dùng tự chạy.
+Nhóm này không có một lệnh terminal bắt buộc. Chạy được ứng dụng thì phải làm bước kiểm tra tương ứng trước khi báo xong. Không mở được thì đưa đúng bước dưới đây để người dùng tự chạy. Đó là xong phần kiểm tra, không phải fail của code.
 
 - **VBA:** trong trình soạn VBA, chạy Debug > Compile VBAProject. Hết lỗi biên dịch mới đạt. Sau đó chạy macro trên bản sao của workbook, không chạy trên file gốc.
 - **Google Apps Script:** lưu trong trình soạn để hiện lỗi cú pháp, rồi chạy hàm trên bản sao của spreadsheet. Nếu dự án đã có `clasp`, chạy lệnh kiểm tra sẵn có của dự án; không tự cài `clasp`.

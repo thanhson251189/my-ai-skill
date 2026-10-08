@@ -54,4 +54,4 @@ Dùng lockfile và **commit nó vào git** để dự án chạy lại được 
 | C/C++ | `conan.lock` nếu dùng Conan. Với vcpkg thì commit `vcpkg.json`; `builtin-baseline` là field trong file đó, không phải file riêng, và không được bỏ `vcpkg.json` khỏi git | `build/`, `*.o`, `*.exe` |
 | Mọi ngôn ngữ | | `.env`, `*.log`, file IDE chỉ của máy mình. Không thêm `.vscode/` vào `.gitignore` nếu repo đang commit cấu hình dùng chung |
 
-Mọi ngôn ngữ đều thêm `.env` vào `.gitignore`. Nếu dự án dùng trình quản lý gói khác với bảng trên, theo công cụ của dự án.
+Không commit `.env`. Chỉ thêm dòng đó vào `.gitignore` khi đang tạo dự án mới, hoặc khi dự án đã dùng biến môi trường mà file này chưa có dòng đó. Nếu dự án dùng trình quản lý gói khác với bảng trên, theo công cụ của dự án.
