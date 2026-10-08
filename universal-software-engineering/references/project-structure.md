@@ -1,12 +1,12 @@
 # Cấu trúc dự án
 
-Mục tiêu: dễ quản lý, lỗi dễ khoanh vùng, AI chỉ cần đọc phần liên quan. Nguyên tắc: **một thư mục cho mỗi tính năng; trong đó chia file theo trách nhiệm, không theo từng hàm.**
+Mục tiêu: dễ quản lý, lỗi dễ khoanh vùng, AI chỉ cần đọc phần liên quan. Nguyên tắc: khi tính năng đã đủ lớn thì một thư mục cho tính năng đó; trong thư mục chia file theo trách nhiệm, không theo từng hàm.
 
 Nếu dự án đã có cấu trúc riêng, tuân theo nó và chỉ áp dụng file này cho phần code mới khi hợp lý.
 
 ## 1. Tổ chức theo tính năng
 
-- Mỗi tính năng một thư mục, chứa mọi thứ của nó: logic, kiểu dữ liệu, truy cập dữ liệu, test.
+- Mỗi tính năng một thư mục khi nó đã đủ lớn để tách. Tính năng còn nhỏ thì một file là đủ (mục 6). Thư mục đó chứa logic, kiểu dữ liệu, truy cập dữ liệu và test của chính nó.
 - Sửa hoặc xóa một tính năng chỉ nên đụng vào thư mục của nó.
 - Đặt tên file theo vai trò (`service`, `models`, `repository`, `handlers`...), không đặt theo tên từng hàm.
 
@@ -19,7 +19,7 @@ Các hàm cùng phục vụ một việc thì nằm chung một file. Tách từ
 | Đối tượng | Cảnh báo | Nên tách chắc chắn |
 |---|---|---|
 | File | khoảng 300 dòng | khoảng 500 dòng |
-| Hàm | khoảng 50 dòng | |
+| Hàm | khoảng 50 dòng | khi hàm làm hai việc, hoặc khoảng 100 dòng mà không đặt được một tên mô tả trọn việc của nó |
 
 Đây là tín hiệu để xem xét, không phải luật cứng. Dấu hiệu nên tách quan trọng hơn con số:
 - File làm hai việc trở lên không liên quan nhau (mô tả file mà phải dùng chữ "và").
@@ -41,6 +41,8 @@ File 350 dòng mà gắn kết chặt, chỉ một trách nhiệm thì không b�
 - Tránh phụ thuộc vòng (A gọi B, B gọi lại A); nếu xảy ra, đó là dấu hiệu ranh giới tính năng chưa đúng.
 
 ## 5. Ví dụ theo ngôn ngữ
+
+Các cây thư mục dưới đây là hình dạng khi một tính năng đã có nhiều trách nhiệm khác nhau. Không dùng chúng làm khung dựng sẵn cho dự án mới hoặc tính năng còn nhỏ. Mục 6 mới là cách bắt đầu.
 
 ### Python
 ```

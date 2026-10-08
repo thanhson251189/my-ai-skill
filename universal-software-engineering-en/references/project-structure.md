@@ -1,12 +1,12 @@
 # Project structure
 
-Goal: easy to manage, bugs easy to localize, and the AI only needs to read the relevant part. Principle: **one directory per feature; inside it, split files by responsibility, not by individual function.**
+Goal: easy to manage, bugs easy to localize, and the AI only needs to read the relevant part. Principle: once a feature is large enough, give it one directory; inside that directory, split files by responsibility, not by individual function.
 
 If the project already has its own structure, follow it and apply this file only to new code where it makes sense.
 
 ## 1. Organize by feature
 
-- One directory per feature, containing everything it needs: logic, data types, data access, tests.
+- One directory per feature once it is large enough to split. A small feature stays in one file (section 6). That directory holds its own logic, data types, data access, and tests.
 - Editing or removing a feature should only touch its own directory.
 - Name files by role (`service`, `models`, `repository`, `handlers`...), not by individual function name.
 
@@ -19,7 +19,7 @@ Functions that serve the same purpose live in the same file. Splitting every fun
 | Item | Warn at | Definitely split at |
 |---|---|---|
 | File | about 300 lines | about 500 lines |
-| Function | about 50 lines | |
+| Function | about 50 lines | when the function does two jobs, or is about 100 lines and cannot be given one name that covers all of its work |
 
 These are signals to take a look, not hard rules. The signs that a split is needed matter more than the numbers:
 - The file does two or more unrelated things (describing it requires the word "and").
@@ -41,6 +41,8 @@ A 350-line file that is tightly cohesive with a single responsibility does not h
 - Avoid circular dependencies (A calls B, B calls A back); if it happens, it is a sign the feature boundary is wrong.
 
 ## 5. Examples by language
+
+The trees below are the shape of a feature that already has several different responsibilities. Do not use them as a scaffold for a new project or a still-small feature. Section 6 is how to start.
 
 ### Python
 ```

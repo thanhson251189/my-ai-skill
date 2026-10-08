@@ -1,18 +1,25 @@
 # Python
 
-## Công cụ mặc định (khi dự án chưa có)
-- Môi trường & dependency: `uv` (dùng `venv` chỉ khi không cài được uv)
-- Lint & format: `ruff`
+## Công cụ mặc định (chỉ khi dự án chưa có)
+- Môi trường và dependency: `uv` (dùng `venv` chỉ khi không cài được uv)
+- Lint và format: `ruff`
 - Kiểm tra kiểu: `pyright` (hoặc `mypy` nếu dự án đã dùng)
 - Test: `pytest`
 
 ## Lệnh kiểm tra trước khi báo hoàn thành
+Nếu dự án đã có lệnh kiểm tra (script, Makefile, CI), chạy lệnh đó. Không chạy `ruff` hay `pyright` trên dự án đang dùng công cụ khác.
+
+Nếu chưa có toolchain và đang tạo dự án mới, cài vào dự án rồi chạy từ môi trường đó, không dùng bản cài tạm ngoài lockfile:
+
 ```bash
-ruff check .
-ruff format --check .
-pyright            # hoặc: mypy .
-pytest
+uv add --dev ruff pyright pytest
+uv run ruff check .
+uv run ruff format --check .
+uv run pyright
+uv run pytest
 ```
+
+Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
 
 ## Thực hành
 - **Type hints đầy đủ** cho tham số và kiểu trả về của mọi hàm. Type hint chỉ có giá trị khi có pyright/mypy chạy kiểm tra.

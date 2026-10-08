@@ -1,6 +1,6 @@
 # Quy trình làm việc (áp dụng cho mọi ngôn ngữ)
 
-Bốn nhóm quy tắc dưới đây không phụ thuộc ngôn ngữ. Với lệnh cụ thể của từng ngôn ngữ, xem file tương ứng trong `references/`.
+Bốn nhóm quy tắc dưới đây không phụ thuộc ngôn ngữ. Với lệnh cụ thể của từng ngôn ngữ, xem file cùng thư mục với file này.
 
 ## 1. Sửa lỗi: tìm nguyên nhân gốc trước khi vá
 
@@ -10,8 +10,8 @@ Không đoán mò rồi sửa thử. Đi theo thứ tự:
 2. **Đọc thông báo lỗi và stack trace** kỹ; vị trí lỗi thường chỉ ra hướng đúng.
 3. **Thu hẹp phạm vi:** xác định đoạn code, đầu vào hoặc thay đổi gần nhất gây ra lỗi.
 4. **Nêu giả thuyết về nguyên nhân gốc** và kiểm chứng bằng log, debugger hoặc test nhỏ, không chỉ suy luận.
-5. **Viết test thất bại** tái hiện lỗi (khi hợp lý), rồi sửa tối thiểu cho test pass. Test này ở lại để lỗi không quay lại.
-6. **Chạy lại toàn bộ kiểm tra** (lint, format, test) để chắc không làm hỏng chỗ khác.
+5. **Viết test thất bại** tái hiện lỗi khi dự án đã có chỗ đặt test, rồi sửa tối thiểu cho test pass. Test này ở lại để lỗi không quay lại. Chưa có khung test thì không tạo khung mới chỉ vì lỗi này, trừ khi người dùng yêu cầu.
+6. **Chạy lại lệnh kiểm tra của dự án** (lint, format, test mà dự án đang dùng) để chắc không làm hỏng chỗ khác.
 
 Không che triệu chứng: không thêm `try/catch` rỗng, không bỏ qua lỗi, không xóa test đang fail để "cho qua". Nếu sửa xong mà không giải thích được vì sao lỗi xảy ra, coi như chưa xong.
 
@@ -43,15 +43,15 @@ Nói rõ việc sẽ làm và hậu quả, rồi chờ người dùng đồng ý
 
 ## 4. Khóa phiên bản dependency
 
-Dùng lockfile và **commit nó vào git** để dự án chạy lại được giống hệt sau vài tháng. Ghim phiên bản có chủ đích; không tự nâng cấp dependency khi người dùng không yêu cầu.
+Dùng lockfile và **commit nó vào git** để dự án chạy lại được giống hệt sau vài tháng. Ghim phiên bản có chủ đích; không tự nâng cấp dependency khi người dùng không yêu cầu. Không tự thêm hoặc xóa lockfile nếu việc đó ngược với loại dự án đang có.
 
 | Ngôn ngữ | Lockfile (commit) | Nên đưa vào `.gitignore` |
 |---|---|---|
 | Python (uv) | `uv.lock` | `.venv/`, `__pycache__/`, `.pytest_cache/`, `.ruff_cache/` |
-| Rust | `Cargo.lock` | `target/` |
+| Rust | `Cargo.lock` với binary. Library thì theo quy ước sẵn có của crate, không tự commit hoặc xóa | `target/` |
 | TypeScript/JS | `package-lock.json`, `pnpm-lock.yaml` hoặc `bun.lock` (dùng đúng một cái) | `node_modules/`, `dist/`, `.next/` |
 | Go | `go.sum` (cùng `go.mod`) | `bin/`, file thực thi build ra |
-| C/C++ | file khóa của trình quản lý gói đang dùng (`conan.lock`, `vcpkg.json`...) | `build/`, `*.o`, `*.exe` |
-| Mọi ngôn ngữ | | `.env`, `*.log`, file IDE cá nhân (`.idea/`, `.vscode/` trừ cấu hình chung của dự án) |
+| C/C++ | file khóa của trình quản lý gói đang dùng (`conan.lock`; với vcpkg là `builtin-baseline` trong manifest, không phải chính `vcpkg.json`) | `build/`, `*.o`, `*.exe` |
+| Mọi ngôn ngữ | | `.env`, `*.log`, file IDE chỉ của máy mình. Không thêm `.vscode/` vào `.gitignore` nếu repo đang commit cấu hình dùng chung |
 
 Mọi ngôn ngữ đều thêm `.env` vào `.gitignore`. Nếu dự án dùng trình quản lý gói khác với bảng trên, theo công cụ của dự án.

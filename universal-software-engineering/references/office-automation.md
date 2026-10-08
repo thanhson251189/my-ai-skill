@@ -5,15 +5,24 @@ Nguyên tắc chung: **đọc và ghi dữ liệu theo lô (mảng trong bộ nh
 ## VBA
 - Luôn có `Option Explicit` ở đầu module.
 - Không dùng `.Select` / `.Activate`; thao tác trực tiếp trên đối tượng Range/Worksheet.
-- Đọc cả vùng vào mảng (`arr = rng.Value`), xử lý trong bộ nhớ, rồi ghi lại một lần.
+- Đọc cả vùng vào mảng (`arr = rng.Value`), xử lý trong bộ nhớ, rồi ghi lại một lần. Một ô thì `rng.Value` là giá trị đơn, không phải mảng. Chỉ gán thẳng vào mảng khi vùng có từ hai ô; một ô thì bọc thành mảng trước khi xử lý chung.
 - Tắt cập nhật màn hình khi chạy: `Application.ScreenUpdating = False`, và **luôn bật lại** (kể cả khi có lỗi, dùng `On Error GoTo` để dọn dẹp).
 
 ## Google Apps Script
 - Dùng `getValues()` / `setValues()` theo vùng, không `getValue()` từng ô.
-- Dùng `LockService` để tránh xung đột khi nhiều lần chạy cùng lúc ghi vào một sheet.
+- Dùng khóa của `LockService` khi nhiều lần chạy có thể ghi cùng một sheet. Lấy khóa, chờ, và luôn nhả trong `finally`:
+  ```javascript
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    // đọc và ghi theo lô
+  } finally {
+    lock.releaseLock();
+  }
+  ```
 - Gọi `SpreadsheetApp.flush()` khi cần đảm bảo thứ tự ghi.
 - Lưu ý giới hạn thời gian chạy của Apps Script; chia lô nếu dữ liệu lớn.
 
 ## Office Scripts (Excel trên web, viết bằng TypeScript)
-- Áp dụng quy tắc TypeScript (`references/typescript.md`).
+- Áp dụng quy tắc kiểu của `typescript.md` trong cùng thư mục này: không dùng `any`, validate dữ liệu ở biên. Không áp dụng Biome, Vitest hay `tsc` trừ khi dự án đã có các lệnh đó.
 - Đọc/ghi theo vùng với `getValues()` / `setValues()`, hạn chế gọi API cho từng ô.

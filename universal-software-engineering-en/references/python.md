@@ -1,18 +1,25 @@
 # Python
 
-## Default tooling (when the project has none)
-- Environment & dependencies: `uv` (use `venv` only if uv cannot be installed)
-- Lint & format: `ruff`
+## Default tooling (only when the project has none)
+- Environment and dependencies: `uv` (use `venv` only if uv cannot be installed)
+- Lint and format: `ruff`
 - Type checking: `pyright` (or `mypy` if the project already uses it)
 - Tests: `pytest`
 
 ## Check commands before reporting done
+If the project already has a check command (script, Makefile, CI), run that. Do not run `ruff` or `pyright` on a project that uses other tools.
+
+If there is no toolchain and you are creating a new project, install the tools into the project and run them from that environment. Do not use a temporary install outside the lockfile:
+
 ```bash
-ruff check .
-ruff format --check .
-pyright            # or: mypy .
-pytest
+uv add --dev ruff pyright pytest
+uv run ruff check .
+uv run ruff format --check .
+uv run pyright
+uv run pytest
 ```
+
+If an existing project is missing a tool, say so. Do not add it yourself.
 
 ## Practices
 - **Full type hints** on parameters and return types of every function. Type hints only have value when pyright/mypy actually checks them.

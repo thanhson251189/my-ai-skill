@@ -1,6 +1,6 @@
 # Working process (applies to every language)
 
-The four groups of rules below are language-independent. For language-specific commands, see the matching file in `references/`.
+The four groups of rules below are language-independent. For language-specific commands, see the matching file in this same directory.
 
 ## 1. Bug fixing: find the root cause before patching
 
@@ -10,8 +10,8 @@ Do not guess and try random fixes. Follow this order:
 2. **Read the error message and stack trace** carefully; the failing location usually points the right way.
 3. **Narrow the scope:** identify the code, input, or most recent change that causes it.
 4. **State a hypothesis about the root cause** and verify it with logs, a debugger, or a small test, not just reasoning.
-5. **Write a failing test** that reproduces the bug (when sensible), then make the minimal fix so the test passes. The test stays so the bug does not return.
-6. **Re-run all checks** (lint, format, tests) to be sure nothing else broke.
+5. **Write a failing test** that reproduces the bug when the project already has a place for tests, then make the minimal fix so the test passes. The test stays so the bug does not return. If there is no test setup, do not create one just for this bug unless the user asks.
+6. **Re-run the project's checks** (the lint, format, and test commands it already uses) to be sure nothing else broke.
 
 Do not mask symptoms: no empty `try/catch`, no ignoring errors, no deleting a failing test to "make it pass". If you fixed it but cannot explain why the bug happened, treat it as not fixed.
 
@@ -43,15 +43,15 @@ State what you are about to do and the consequences, then wait for the user's ap
 
 ## 4. Pinning dependency versions
 
-Use a lockfile and **commit it to git** so the project can be reproduced identically months later. Pin versions deliberately; do not upgrade dependencies on your own unless the user asks.
+Use a lockfile and **commit it to git** so the project can be reproduced identically months later. Pin versions deliberately; do not upgrade dependencies on your own unless the user asks. Do not add or delete a lockfile when that would go against the kind of project that already exists.
 
 | Language | Lockfile (commit it) | Add to `.gitignore` |
 |---|---|---|
 | Python (uv) | `uv.lock` | `.venv/`, `__pycache__/`, `.pytest_cache/`, `.ruff_cache/` |
-| Rust | `Cargo.lock` | `target/` |
+| Rust | `Cargo.lock` for a binary. For a library, follow the crate's existing convention; do not commit or delete it on your own | `target/` |
 | TypeScript/JS | `package-lock.json`, `pnpm-lock.yaml`, or `bun.lock` (use exactly one) | `node_modules/`, `dist/`, `.next/` |
 | Go | `go.sum` (with `go.mod`) | `bin/`, built executables |
-| C/C++ | the lock file of the package manager in use (`conan.lock`, `vcpkg.json`...) | `build/`, `*.o`, `*.exe` |
-| Any language | | `.env`, `*.log`, personal IDE files (`.idea/`, `.vscode/` except shared project config) |
+| C/C++ | the lock file of the package manager in use (`conan.lock`; for vcpkg, `builtin-baseline` inside the manifest, not `vcpkg.json` itself) | `build/`, `*.o`, `*.exe` |
+| Any language | | `.env`, `*.log`, IDE files that belong only to one machine. Do not add `.vscode/` to `.gitignore` if the repo already commits shared config |
 
 Every language adds `.env` to `.gitignore`. If the project uses a package manager other than those in the table, follow the project's tooling.
