@@ -44,7 +44,7 @@ Nói rõ việc sẽ làm và hậu quả, rồi chờ người dùng đồng ý
 
 ## 4. Khóa phiên bản dependency
 
-Dùng lockfile và **commit nó vào git** để dự án chạy lại được giống hệt sau vài tháng. Ghim phiên bản có chủ đích; không tự nâng cấp dependency khi người dùng không yêu cầu. Không tự thêm hoặc xóa lockfile nếu việc đó ngược với loại dự án đang có.
+Dùng lockfile và giữ nó trong git để dự án chạy lại được giống hệt sau vài tháng. Không tự commit lockfile; chỉ commit khi người dùng yêu cầu. Ghim phiên bản có chủ đích; không tự nâng cấp dependency khi người dùng không yêu cầu. Không tự thêm hoặc xóa lockfile nếu việc đó ngược với loại dự án đang có.
 
 | Ngôn ngữ | Lockfile (commit) | Nên đưa vào `.gitignore` |
 |---|---|---|

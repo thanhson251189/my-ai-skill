@@ -13,6 +13,7 @@ compatibility: Không cần runtime riêng. Lệnh trong file tham chiếu chỉ
 - **Không nuốt lỗi âm thầm.** Mọi lỗi phải được log kèm ngữ cảnh hoặc trả về qua kiểu dữ liệu xử lý lỗi rõ ràng, vì lỗi bị nuốt sẽ biến thành bug khó truy vết về sau. Không log secret, token hay mật khẩu.
 - **Không hardcode secret** (API key, mật khẩu, token). Đọc từ biến môi trường hoặc file cấu hình nằm ngoài git.
 - **Hỏi lại trước thay đổi lớn:** refactor diện rộng, đổi cấu trúc thư mục, đổi thư viện hoặc framework chính, thêm toolchain vào dự án đã có.
+- **Không tự `commit` hay `push`.** Chỉ commit/push khi người dùng yêu cầu rõ.
 - **Chỉ ra phần thay đổi, không dán cả file trong câu trả lời.** Sửa file có sẵn bằng công cụ sửa của agent. File mới thì tạo file. Không dán nguyên file trong câu trả lời rồi coi như đã sửa. Sửa nhỏ: nêu file và khối đã đổi, kèm vài dòng ngữ cảnh. Sửa lớn hoặc rải nhiều chỗ: liệt kê file nào đổi và hành vi đổi ra sao.
 
 # Comment và giải thích (người dùng thiên về vibe coding)
@@ -49,7 +50,7 @@ Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án v
 # Ví dụ nhanh
 
 Yêu cầu "sửa bug đăng nhập": chỉ đụng file đăng nhập, chạy kiểm tra trên file đó, tóm tắt file đã đổi và vì sao.
-Không làm thêm: format cả repo, dựng thư mục `shared/`, thêm framework test, tự commit.
+Không làm thêm: format cả repo, dựng thư mục `shared/`, thêm framework test.
 
 # Chọn file theo ngôn ngữ
 
