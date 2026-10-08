@@ -1,9 +1,8 @@
 # C / C++
 
-## Công cụ mặc định (chỉ khi dự án chưa có)
-- Format: `clang-format`, nếu đã có sẵn.
-- Cảnh báo khi biên dịch file mới: GCC/Clang dùng `-Wall -Wextra`; MSVC dùng `/W4`. Không tự bật `-Werror` hay `/WX` nếu dự án chưa bật.
-- Phân tích tĩnh: `clang-tidy` chỉ khi dự án đã dùng hoặc công cụ đã có sẵn.
+## Cờ cảnh báo khi chưa có hệ build
+- GCC/Clang: `-Wall -Wextra`. MSVC: `/W4`. Không tự bật `-Werror` hay `/WX` nếu dự án chưa bật.
+- Không cài `clang-format` hay `clang-tidy` cho dự án mới. Chỉ dùng khi đã có sẵn, và format chỉ khi có file cấu hình như mục dưới.
 
 ## Lệnh kiểm tra trước khi báo hoàn thành
 Chạy target build và test của dự án (`cmake`, `make`, Meson, MSBuild...). Theo cờ cảnh báo và bộ test đang có.
@@ -12,7 +11,7 @@ Nếu chưa có hệ build, biên dịch đúng file vừa sửa với cờ cả
 
 `clang-format -i` chỉ khi đã có `.clang-format` hoặc `_clang-format` ở file hay thư mục cha. Không truyền `-style=` tự bịa. Chỉ có binary mà không có file cấu hình thì không format: style mặc định LLVM viết lại cả file.
 
-Sanitizer (`-fsanitize=address,undefined`, hoặc AddressSanitizer của MSVC nếu bản compiler có) chỉ thêm vào lệnh biên dịch tạm của file vừa sửa, khi compiler hỗ trợ. Không ghi cờ đó vào CMake, Makefile hay file build lâu dài của dự án.
+Sanitizer chỉ thêm vào lệnh biên dịch tạm của file vừa sửa, khi compiler hỗ trợ. GCC/Clang: `-fsanitize=address,undefined`. MSVC: `/fsanitize=address` (không có undefined sanitizer tương đương; không truyền cờ `-fsanitize` cho `cl`). Không ghi cờ đó vào CMake, Makefile hay file build lâu dài của dự án.
 
 ## Thực hành
 - Theo chuẩn C++ dự án đang đặt. Không tự nâng `-std` hay `/std`. Dự án mới thì C++17 là đủ, trừ khi cần API chỉ có ở chuẩn mới hơn.

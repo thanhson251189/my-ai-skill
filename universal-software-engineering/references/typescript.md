@@ -19,7 +19,7 @@ npm exec biome -- check --write .
 npm exec tsc -- --noEmit
 ```
 
-Dự án TypeScript mới đã chọn pnpm hoặc bun thì dùng đúng trình quản lý đó, vẫn chỉ ba gói trong lệnh trên. Không cài ba gói này vào dự án đã có. Dự án đã có công cụ nhưng không có script: chỉ chạy binary của dự án trên file vừa sửa. Dự án dùng npm thì `npm exec biome -- check --write -- path/to/file.ts`. pnpm, yarn hoặc bun thì dùng đúng lệnh exec của trình đó, không gọi `npm`. Không quét cả repo. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
+Dự án TypeScript mới đã chọn pnpm hoặc bun thì dùng đúng trình quản lý đó, vẫn chỉ ba gói trong lệnh trên. Không cài ba gói này vào dự án đã có. Dự án đã có công cụ nhưng không có script: chỉ chạy đúng binary dự án đang dùng, trên file vừa sửa. Ví dụ chỉ khi công cụ đó là Biome và trình quản lý là npm: `npm exec biome -- check --write path/to/file.ts`. pnpm, yarn hoặc bun thì dùng đúng lệnh exec của trình đó, không gọi `npm`. Không chạy Biome nếu dự án không dùng Biome. Không quét cả repo. Dự án đã có mà thiếu công cụ thì báo, không tự thêm.
 
 Dự án JavaScript không có `tsconfig.json`: bỏ qua `tsc`. Không tự thêm TypeScript.
 

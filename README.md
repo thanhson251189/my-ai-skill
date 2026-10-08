@@ -4,6 +4,20 @@ Quy chuẩn viết code tinh gọn cho agent. Skill nằm trong thư mục `univ
 
 Giấy phép là MIT. `LICENSE` ở gốc repo và trong thư mục skill; bản cài chỉ mang file trong thư mục skill.
 
+## Cài cho nhiều agent
+
+Skill dùng chung cho Pi, Claude Code, Codex, OpenCode và Grok. Mỗi agent có thư mục user riêng. Cài bản đủ thư mục `universal-software-engineering/` (có `SKILL.md`, `references/`, `LICENSE`), không chỉ chép `SKILL.md`.
+
+| Agent | Thư mục user |
+|---|---|
+| Pi | `~/.pi/agent/skills/` |
+| Claude Code | `~/.claude/skills/` |
+| Codex | `~/.codex/skills/` |
+| OpenCode | `~/.config/opencode/skills/` |
+| Grok | `~/.grok/skills/` |
+
+Trên Windows, công cụ cài thường copy thành file thường, không symlink. Các bản không tự theo repo. Sửa skill xong phải cài lại từng agent, không chỉ một chỗ.
+
 ## Cài vào Pi
 
 Pi nạp skill theo thứ tự. Trùng tên thì bản gặp trước thắng, bản sau bị bỏ qua kèm cảnh báo:
