@@ -4,10 +4,12 @@
 Chạy lệnh của dự án nếu đã có. Nếu chưa có:
 
 ```bash
-gofmt -l .          # không in ra gì là đạt
+test -z "$(gofmt -l .)"
 go vet ./...
 go test ./...
 ```
+
+`gofmt -l` luôn thoát mã 0 dù còn file chưa format, nên không dùng riêng lệnh đó để kết luận đạt. `test -z` fail khi còn đường dẫn được in ra. Shell không có `test` thì coi là fail nếu `gofmt -l .` in bất kỳ đường dẫn nào.
 
 `golangci-lint run` chỉ khi dự án đã cấu hình hoặc công cụ đã có sẵn. Không tự cài. Với code có goroutine, chạy thêm `go test -race ./...` nếu toolchain chạy được race detector.
 

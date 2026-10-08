@@ -1,6 +1,7 @@
 ---
 name: universal-software-engineering
-description: Phiên bản tiếng Việt. Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ cho code tinh gọn, clean code. Hãy dùng skill này bất cứ khi nào người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến "quy chuẩn" hay "best practice". Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn "hoàn thành".
+description: >-
+  Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ cho code tinh gọn, viết bằng tiếng Việt. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành.
 compatibility: Không cần runtime riêng. Lệnh trong file tham chiếu chỉ là mặc định khi dự án chưa có toolchain.
 ---
 
@@ -12,7 +13,7 @@ compatibility: Không cần runtime riêng. Lệnh trong file tham chiếu chỉ
 - **Không nuốt lỗi âm thầm.** Mọi lỗi phải được log kèm ngữ cảnh hoặc trả về qua kiểu dữ liệu xử lý lỗi rõ ràng, vì lỗi bị nuốt sẽ biến thành bug khó truy vết về sau. Không log secret, token hay mật khẩu.
 - **Không hardcode secret** (API key, mật khẩu, token). Đọc từ biến môi trường hoặc file cấu hình nằm ngoài git.
 - **Hỏi lại trước thay đổi lớn:** refactor diện rộng, đổi cấu trúc thư mục, đổi thư viện hoặc framework chính, thêm toolchain vào dự án đã có.
-- **Khoe phần thay đổi, không dán cả file.** Sửa file bằng công cụ sửa của agent, không dán nguyên file rồi coi như đã sửa. Sửa nhỏ: nêu file và khối đã đổi, kèm vài dòng ngữ cảnh. Sửa lớn hoặc rải nhiều chỗ: liệt kê file nào đổi và hành vi đổi ra sao.
+- **Chỉ ra phần thay đổi, không dán cả file.** Sửa file bằng công cụ sửa của agent, không dán nguyên file rồi coi như đã sửa. Sửa nhỏ: nêu file và khối đã đổi, kèm vài dòng ngữ cảnh. Sửa lớn hoặc rải nhiều chỗ: liệt kê file nào đổi và hành vi đổi ra sao.
 
 # Comment và giải thích (người dùng thiên về vibe coding)
 
@@ -22,7 +23,7 @@ Người dùng có thể không tự đọc từng dòng code, nên cần hiểu
 - **Comment chỉ để giải thích "vì sao"**: lý do, ràng buộc hoặc đánh đổi không hiển nhiên (ví dụ giới hạn của API, workaround cho bug, lý do chọn thuật toán).
 - **Docstring ngắn cho hàm hoặc module công khai khi tên và chữ ký chưa nói hết** làm gì, nhận gì, trả về gì. Dùng đúng dạng của ngôn ngữ (docstring Python, `///` Rust, JSDoc/TSDoc, doc comment Go...). Không viết docstring chỉ lặp lại tên hàm.
 - **Đặt tên rõ nghĩa** thay vì tên ngắn kèm comment giải thích.
-- **Sau khi hoàn thành một tính năng hoặc thay đổi đáng kể**, tóm tắt ngắn bằng ngôn ngữ đơn giản: code làm gì, luồng chạy ra sao, file nào đã đổi và vì sao. Tránh thuật ngữ khi không cần; nếu dùng thì giải thích ngắn.
+- **Sau khi hoàn thành một tính năng hoặc thay đổi đáng kể**, tóm tắt ngắn bằng ngôn ngữ đơn giản: code làm gì, luồng chạy ra sao, file nào đã đổi và vì sao. Không bỏ qua tóm tắt này; đó là cách người dùng nắm thay đổi mà không cần docstring trên mọi hàm. Tránh thuật ngữ khi không cần; nếu dùng thì giải thích ngắn.
 - Với dự án mới, tạo hoặc cập nhật `README.md` (hoặc `NOTES.md`) ngắn: mục đích, cấu trúc thư mục, cách chạy/test, các quyết định thiết kế chính.
 - Nếu người dùng yêu cầu giải thích sâu hơn cho một đoạn cụ thể, giải thích ngoài code (trong câu trả lời), không nhét vào file.
 
@@ -38,7 +39,7 @@ Tổ chức theo tính năng khi tính năng đã đủ lớn: **một thư mụ
 
 Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Dự án chưa có lệnh nào thì dùng lệnh mặc định trong file tham chiếu của ngôn ngữ đang sửa. Không được tuyên bố "xong" khi chưa chạy. Không chạy được thì nói rõ lý do và đưa lệnh để người dùng tự chạy.
 
-1. Linter, formatter hoặc compiler mà dự án đang dùng không còn cảnh báo mới do thay đổi này. Không tự bật `-Werror` hay đổi bộ lint.
+1. Lệnh kiểm tra không còn lỗi mới do thay đổi này. Không tự bật `-Werror` hay đổi bộ lint. Nếu lệnh đã fail từ trước khi sửa, không tự sửa các lỗi cũ. Lấy mức nền bằng cách chạy trên bản gốc, hoặc chỉ kiểm tra file vừa sửa, rồi báo riêng các lỗi có sẵn.
 2. Phần code vừa sửa đã được format bằng formatter của dự án, nếu dự án có.
 3. Hành vi mới hoặc lỗi vừa sửa có test nếu dự án đã có chỗ đặt test. Không dựng framework test mới và không thêm test giả chỉ để lệnh thoát 0, trừ khi người dùng yêu cầu thiết lập test.
 
