@@ -6,7 +6,7 @@ Giấy phép là MIT. `LICENSE` ở gốc repo và trong thư mục skill; bản
 
 ## Cài cho nhiều agent
 
-Skill dùng chung cho Pi, Claude Code, Codex, OpenCode, Grok và Antigravity / Gemini CLI. Mỗi agent có thư mục user riêng. Cài bản đủ thư mục `universal-software-engineering/` (có `SKILL.md`, `references/`, `LICENSE`), không chỉ chép `SKILL.md`.
+Skill dùng chung cho Pi, Claude Code, Codex, OpenCode, Grok, Antigravity và Gemini CLI. Mỗi agent có thư mục user riêng. Cài bản đủ thư mục `universal-software-engineering/` (có `SKILL.md`, `references/`, `LICENSE`), không chỉ chép `SKILL.md`.
 
 | Agent | Thư mục user |
 |---|---|
@@ -15,7 +15,8 @@ Skill dùng chung cho Pi, Claude Code, Codex, OpenCode, Grok và Antigravity / G
 | Codex | `~/.codex/skills/` |
 | OpenCode | `~/.config/opencode/skills/` |
 | Grok | `~/.grok/skills/` |
-| Antigravity / Gemini CLI | `~/.gemini/skills/` |
+| Antigravity | `~/.gemini/antigravity/skills/` |
+| Gemini CLI | `~/.gemini/skills/` |
 
 Trên Windows, công cụ cài thường copy thành file thường, không symlink. Các bản không tự theo repo. Sửa skill xong phải cài lại từng agent, không chỉ một chỗ.
 
@@ -25,23 +26,13 @@ Grok và OpenCode còn quét `~/.claude/skills`. Bản trong thư mục riêng v
 
 ## Cài đặt
 
-Cần Node.js. Cài global cho mọi agent:
+Cần Node.js. Cài global cho các agent đang dùng (không dùng `--all`: nó cài vào mọi agent mà CLI hỗ trợ, hàng chục thư mục thừa):
 
 ```bash
-npx skills add thanhson251189/my-ai-skill -g --all
+npx skills add thanhson251189/my-ai-skill -g -a pi -a claude-code -a codex -a opencode -a grok -a gemini-cli -a antigravity -y
 ```
 
-Chỉ một agent (`pi`, `claude-code`, `codex`, `opencode`, `grok`, `gemini-cli`):
-
-```bash
-npx skills add thanhson251189/my-ai-skill -g -a pi -y
-```
-
-Trên Windows thêm `--copy` vì thường thiếu quyền symlink:
-
-```bash
-npx skills add thanhson251189/my-ai-skill -g --all --copy
-```
+Trên Windows thêm `--copy` vì thường thiếu quyền symlink. Chỉ cài agent đang dùng thì bỏ bớt `-a` tương ứng.
 
 Cập nhật bản mới:
 

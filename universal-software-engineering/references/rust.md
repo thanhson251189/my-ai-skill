@@ -11,7 +11,7 @@ cargo test
 
 Thiếu component `clippy` thì báo và bỏ qua lệnh đó; không tự chạy `rustup component add`.
 
-Dự án đã có code: format đúng file vừa sửa bằng `rustfmt --edition <edition ghi trong Cargo.toml> -- path/to/file.rs`. `cargo fmt` luôn format cả package kể cả khi truyền file sau `--`, nên không dùng nó khi còn file chưa format ngoài phạm vi. Không gọi `rustfmt` mà thiếu `--edition`: mặc định là 2015 và có thể sửa file sai. Chỉ phát hiện mà không ghi thì `cargo fmt --check`. `cargo test` thoát 0 khi không có test; đó không phải đã kiểm thử.
+Dự án đã có code: format đúng file lá vừa sửa bằng `rustfmt --edition <edition ghi trong Cargo.toml> path/to/file.rs`. `cargo fmt` luôn format cả package kể cả khi truyền file sau `--`, nên không dùng nó khi còn file chưa format ngoài phạm vi. `rustfmt` theo khai báo `mod` sang file con: file đụng là file gốc thì file con bị format theo là tất yếu, phải báo. Không gọi `rustfmt` mà thiếu `--edition`: mặc định là 2015 và có thể sửa file sai. Chỉ phát hiện mà không ghi thì `cargo fmt --check`. `cargo test` thoát 0 khi không có test; đó không phải đã kiểm thử.
 
 ## Thực hành
 - **Xử lý lỗi bằng `Result` và kiểu lỗi sẵn có của crate.** Chỉ thêm `anyhow` cho app/CLI, hoặc `thiserror` cho thư viện, khi lỗi cần ngữ cảnh hay kiểu riêng mà thư viện chuẩn làm code rối hơn, và chỉ khi được phép thêm dependency.
