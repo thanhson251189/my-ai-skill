@@ -27,6 +27,7 @@ CleanFail:
   Application.ScreenUpdating = previousUpdating
   Err.Raise Err.Number, Err.Source, Err.Description
   ```
+  Trong `Function` thì dùng `Exit Function` thay cho `Exit Sub`.
 
 ## Google Apps Script
 - Dùng `getValues()` / `setValues()` theo vùng, không `getValue()` từng ô.

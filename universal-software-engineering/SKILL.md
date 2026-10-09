@@ -24,7 +24,7 @@ Người dùng có thể không tự đọc từng dòng code, nên cần hiểu
 - **Comment chỉ để giải thích "vì sao"**: lý do, ràng buộc hoặc đánh đổi không hiển nhiên (ví dụ giới hạn của API, workaround cho bug, lý do chọn thuật toán).
 - **Docstring ngắn cho hàm hoặc module công khai khi tên và chữ ký chưa nói hết** làm gì, nhận gì, trả về gì. Dùng đúng dạng của ngôn ngữ (docstring Python, `///` Rust, JSDoc/TSDoc, doc comment Go...). Không viết docstring chỉ lặp lại tên hàm.
 - **Đặt tên rõ nghĩa** thay vì tên ngắn kèm comment giải thích. Tên biến, hàm, kiểu theo ngôn ngữ của dự án. Không dịch tên định danh sang tiếng Việt chỉ vì skill viết bằng tiếng Việt.
-- **Comment, docstring, log và message lỗi trong code theo ngôn ngữ của dự án**, không theo tiếng Việt của skill. Không chép câu tiếng Việt từ ví dụ trong skill vào mã nguồn.
+- **Comment, docstring, log và message lỗi trong code theo ngôn ngữ của dự án**, không theo tiếng Việt của skill. Dự án mới chưa có code thì theo ngôn ngữ đang trao đổi với người dùng; không rõ thì hỏi một câu. Không chép câu tiếng Việt từ ví dụ trong skill vào mã nguồn.
 - **Sau khi hoàn thành một tính năng hoặc thay đổi đáng kể**, tóm tắt ngắn bằng ngôn ngữ đơn giản: code làm gì, luồng chạy ra sao, file nào đã đổi và vì sao. Không bỏ qua tóm tắt này; đó là cách người dùng nắm thay đổi mà không cần docstring trên mọi hàm. Tránh thuật ngữ khi không cần; nếu dùng thì giải thích ngắn.
 - Với dự án mới, tạo hoặc cập nhật `README.md` (hoặc `NOTES.md`) ngắn: mục đích, cấu trúc thư mục, cách chạy/test, các quyết định thiết kế chính.
 - Nếu người dùng yêu cầu giải thích sâu hơn cho một đoạn cụ thể, giải thích ngoài code (trong câu trả lời), không nhét vào file.
@@ -39,7 +39,11 @@ Tổ chức theo tính năng khi tính năng đã đủ lớn: **một thư mụ
 
 # "Hoàn thành" nghĩa là gì
 
-Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Ba quy tắc dưới là bản duy nhất; file tham chiếu chỉ ghi lệnh và điểm riêng của từng ngôn ngữ, không nhắc lại. Dự án chưa có lệnh nào thì dùng lệnh mặc định trong file tham chiếu của ngôn ngữ đang sửa, chỉ trên file vừa sửa. Lệnh ghi `.` hoặc `./...` chỉ dùng khi đang tạo dự án mới và cả cây là phần vừa tạo. Đường dẫn trong ví dụ (`path/to/file.py`, `script.sh`) là chỗ giữ; thay bằng file vừa sửa, không chạy nguyên chữ đó. Không được tuyên bố code đã pass khi chưa chạy được lệnh. Máy không có runtime của ngôn ngữ (Excel, Apps Script, database) thì đưa đúng bước để người dùng tự chạy: đó là xong phần kiểm tra, không phải đã chứng minh code đúng, cũng không phải fail.
+- Chỉ coi là xong khi đã **chạy thật** lệnh kiểm tra của dự án và báo lại kết quả. Không tuyên bố pass khi chưa chạy được lệnh.
+- Ba quy tắc dưới là bản duy nhất; file tham chiếu chỉ ghi lệnh và điểm riêng của từng ngôn ngữ, không nhắc lại.
+- Dự án chưa có lệnh thì dùng lệnh mặc định của ngôn ngữ đang sửa, chỉ trên file vừa sửa. Lệnh quét cả cây (`.`, `./...`) chỉ dùng khi tạo dự án mới.
+- Đường dẫn trong ví dụ (`path/to/file.py`, `script.sh`) là chỗ giữ; thay bằng file vừa sửa, không chạy nguyên chữ đó.
+- Máy không có runtime (Excel, Apps Script, database) thì đưa đúng bước để người dùng tự chạy; đó là xong phần kiểm tra, không phải đã chứng minh code đúng, cũng không phải fail.
 
 1. Lệnh kiểm tra không còn lỗi mới do thay đổi này. Không tự bật `-Werror`, `-D warnings` hay đổi bộ lint. Nếu lệnh đã fail từ trước khi sửa, không tự sửa các lỗi cũ. Lấy mức nền bằng cách chạy trên bản gốc, hoặc chỉ kiểm tra file vừa sửa, rồi báo riêng các lỗi có sẵn.
 2. Phần code vừa sửa đã được format bằng formatter của dự án, nếu dự án có. Chỉ format file vừa sửa. Lệnh kiểm tra format fail vì file khác thì báo riêng, không format các file đó cho qua.

@@ -1,7 +1,11 @@
 # Shell / Bash
 
 ## Lệnh kiểm tra trước khi báo hoàn thành
-Có `shellcheck` thì chạy trên đúng file vừa sửa. `shfmt` chỉ là cổng kiểm tra khi script mới, hoặc dự án đã có `.editorconfig` hay cấu hình mà shfmt đang dùng: `shfmt -w` rồi `shfmt -d` trên file đó. Script có sẵn mà không có cấu hình: không chạy `shfmt`. Mặc định tab sẽ viết lại cả file. Nếu lỡ chạy `shfmt -d` trên script đó, thoát 1 chỉ là lệch style cũ, không phải fail của thay đổi này. Script mới hoặc đã có cấu hình: sau `shfmt -w`, `shfmt -d` phải im và thoát 0. File `.ps1` không dùng `shfmt`, `shellcheck` hay shebang bash. Thiếu công cụ thì đưa lệnh để người dùng tự chạy.
+- Có `shellcheck` thì chạy trên đúng file vừa sửa.
+- `shfmt` chỉ là cổng kiểm tra khi script mới, hoặc dự án đã có `.editorconfig` hay cấu hình mà shfmt đang dùng: `shfmt -w` rồi `shfmt -d` trên file đó.
+- Script có sẵn mà không có cấu hình thì không chạy `shfmt` (mặc định tab sẽ viết lại cả file). Nếu lỡ chạy `shfmt -d`, thoát 1 chỉ là lệch style cũ, không phải fail của thay đổi này.
+- Script mới hoặc đã có cấu hình: sau `shfmt -w`, `shfmt -d` phải im và thoát 0.
+- File `.ps1` không dùng `shfmt`, `shellcheck` hay shebang bash. Thiếu công cụ thì đưa lệnh để người dùng tự chạy.
 
 `shellcheck` luôn chạy được khi có binary. Khối `shfmt` chỉ khi script mới hoặc đã có cấu hình như trên:
 
