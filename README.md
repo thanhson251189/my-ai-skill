@@ -23,6 +23,34 @@ Grok và OpenCode còn quét `~/.claude/skills`. Bản trong thư mục riêng v
 
 Đừng thêm `SKILL.md` ở gốc repo: CLI quản lý skill sẽ ngừng tìm thư mục con trừ khi có `--full-depth`.
 
+## Cài đặt
+
+Cần Node.js. Cài global cho mọi agent:
+
+```bash
+npx skills add thanhson251189/my-ai-skill -g --all
+```
+
+Chỉ một agent (`pi`, `claude-code`, `codex`, `opencode`, `grok`, `gemini-cli`):
+
+```bash
+npx skills add thanhson251189/my-ai-skill -g -a pi -y
+```
+
+Trên Windows thêm `--copy` vì thường thiếu quyền symlink:
+
+```bash
+npx skills add thanhson251189/my-ai-skill -g --all --copy
+```
+
+Cập nhật bản mới:
+
+```bash
+npx skills update universal-software-engineering -g
+```
+
+Kiểm tra bằng `npx skills list -g`, rồi mở lại agent hoặc chạy `/reload`. Máy từng cài 2 kiểu (CLI + copy tay) thì xóa bản copy tay trước, xem `docs/pi.md`.
+
 ## Tài liệu theo agent
 
 - Pi: `docs/pi.md`
