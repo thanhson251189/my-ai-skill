@@ -42,6 +42,8 @@ npx skills update universal-software-engineering -g
 
 Kiểm tra bằng `npx skills list -g`, rồi mở lại agent hoặc chạy `/reload`. Máy từng cài 2 kiểu (CLI + copy tay) thì xóa bản copy tay trước, xem `docs/pi.md`.
 
+CLI đặt bản thật ở `~/.agents/skills/` và chỉ tạo symlink riêng cho Claude Code (`~/.claude/skills/`) và Grok (`~/.grok/skills/`); các agent còn lại được hiểu là đọc từ thư mục dùng chung. Cài xong mở từng agent kiểm tra skill có hiện không; agent nào không thấy thì chép tay thư mục skill vào đường dẫn trong bảng trên.
+
 ## Tài liệu theo agent
 
 - Pi: `docs/pi.md`
