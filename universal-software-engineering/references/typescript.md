@@ -28,7 +28,7 @@ Dự án JavaScript không có `tsconfig.json`: bỏ qua `tsc`. Không tự thê
 
 Chỉ chạy `npm exec vitest -- run` khi đã có file test. Vitest thoát khác 0 khi không có file test; đó không phải fail. Không bật `passWithNoTests` chỉ để lệnh thoát 0.
 
-Biome cảnh báo trên file vừa sửa thì sửa, dù lệnh thoát 0. Không thêm `--error-on-warnings`.
+Biome cảnh báo do thay đổi này thì sửa, dù lệnh thoát 0; cảnh báo có sẵn thì báo riêng. Không thêm `--error-on-warnings`.
 
 ## Thực hành
 - Bật `"strict": true` trong `tsconfig.json` khi đang tạo dự án TypeScript mới. Dự án đã có thì không tự bật strict nếu việc đó làm vỡ các file không liên quan.
