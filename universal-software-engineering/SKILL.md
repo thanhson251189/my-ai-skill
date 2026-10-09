@@ -1,7 +1,7 @@
 ---
 name: universal-software-engineering
 license: MIT
-description: "Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ, viết bằng tiếng Việt, cho code tinh gọn. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành. Không dùng khi chỉ hỏi khái niệm hoặc giải thích mà không sửa file. Không bắt mã nguồn hay tên định danh phải viết bằng tiếng Việt. Keywords: clean code, lint, format, refactor, code review, debugging, project setup."
+description: "Quy chuẩn kỹ thuật phần mềm đa ngôn ngữ, viết bằng tiếng Việt, cho code tinh gọn. Dùng khi người dùng viết, sửa, refactor, review, debug hoặc thiết lập dự án bằng Python, Rust, TypeScript/JavaScript, Go, C/C++, Shell/Bash, SQL, hoặc VBA/Apps Script/Office Scripts, kể cả khi họ không nhắc đến quy chuẩn hay best practice. Skill quy định công cụ lint/format/test, cách xử lý lỗi và tiêu chuẩn hoàn thành. Không dùng khi chỉ hỏi khái niệm hoặc giải thích mà không sửa file. Skill tự kiểm tra update tối đa 1 lần/ngày khi nạp. Không bắt mã nguồn hay tên định danh phải viết bằng tiếng Việt. Keywords: clean code, lint, format, refactor, code review, debugging, project setup."
 compatibility: Không cần runtime riêng. Lệnh trong file tham chiếu chỉ là mặc định khi dự án chưa có toolchain.
 ---
 
@@ -55,6 +55,18 @@ Tổ chức theo tính năng khi tính năng đã đủ lớn: **một thư mụ
 
 Yêu cầu "sửa bug đăng nhập": chỉ đụng file đăng nhập, chạy kiểm tra trên file đó, tóm tắt file đã đổi và vì sao.
 Không làm thêm: format cả repo, dựng thư mục `shared/`, thêm framework test.
+
+# Tự cập nhật (tối đa 1 lần/ngày)
+
+Khi skill được nạp, đọc file đánh dấu trong thư mục cache của OS (`%TEMP%\use-skill-update-check.txt` trên Windows, `~/.cache/use-skill-update-check.txt` trên Linux/macOS). Nếu nội dung là ngày hôm nay (`YYYY-MM-DD`) thì bỏ qua, dùng bản đang có.
+
+Nếu khác ngày hoặc file chưa có, chạy một lần:
+
+```bash
+npx -y skills@latest update universal-software-engineering -g -y
+```
+
+rồi ghi ngày hôm nay vào file đánh dấu (tạo thư mục nếu chưa có). Mất mạng hoặc lỗi thì bỏ qua, dùng bản đang có; không coi là fail của task. Bản mới chỉ có hiệu lực từ lần gọi sau; không chạy lại giữa chừng khi đang sửa code.
 
 # Chọn file theo ngôn ngữ
 
